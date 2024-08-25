@@ -6,6 +6,7 @@ import {
   Toolbar,
   Typography,
 } from "@mui/material";
+import { Link } from "react-router-dom";
 
 type Props = {
   title?: string;
@@ -21,22 +22,28 @@ export default function DrawerAppBar({ title = "" }: Props) {
             minHeight: "80px !important",
             height: "80px",
             background: "white",
+            display: "flex",
+            justifyContent: "space-between",
           }}
         >
-          <Typography
-            component="div"
-            sx={{
-              flexGrow: 1,
-              textAlign: "left",
-              fontSize: { xs: "1.25rem", sm: "1.8rem" },
-              fontWeight: "bold",
-              color: "navy",
-              fontFamily: "Raleway",
-            }}
-          >
-            {title}
-          </Typography>
-          <Box>
+          <Link to="/" style={{ textDecoration: "none" }}>
+            <Typography
+              component="div"
+              sx={{
+                flexGrow: 1,
+                textAlign: "left",
+                fontSize: { xs: "1.25rem", sm: "1.8rem" },
+                fontWeight: "bold",
+                color: "navy",
+                fontFamily: "Raleway",
+                cursor: "pointer",
+              }}
+            >
+              {title}
+            </Typography>
+          </Link>
+
+          <Link to="/contact">
             <Button
               sx={{
                 backgroundColor: "navy",
@@ -50,7 +57,7 @@ export default function DrawerAppBar({ title = "" }: Props) {
             >
               Contact Us
             </Button>
-          </Box>
+          </Link>
         </Toolbar>
       </AppBar>
     </Box>
