@@ -1,0 +1,21 @@
+@font-face {
+  font-family: "Raleway";
+  src: local("Raleway"), url(./assets/fonts/Raleway.ttf) format("truetype");
+  /* other formats include: 'woff2', 'truetype, 'opentype',
+                            'embedded-opentype', and 'svg' */
+}
+
+#root {
+  background-color: white;
+  padding: 0;
+  max-width: 100%;
+}
+
+body {
+  margin: 0;
+  padding-right: 0 !important;
+}
+
+nav {
+  padding-right: 0 !important;
+}
