@@ -1,12 +1,6 @@
-import {
-  AppBar,
-  Box,
-  Button,
-  CssBaseline,
-  Toolbar,
-  Typography,
-} from "@mui/material";
+import { AppBar, Box, CssBaseline, Toolbar, Typography } from "@mui/material";
 import { Link } from "react-router-dom";
+import Button from "./components/Button";
 
 type Props = {
   title?: string;
@@ -44,19 +38,7 @@ export default function DrawerAppBar({ title = "" }: Props) {
           </Link>
 
           <Link to="/contact">
-            <Button
-              sx={{
-                backgroundColor: "navy",
-                border: "2px solid white",
-                borderRadius: "4px",
-                padding: "8px 16px",
-                color: "white",
-                fontSize: "1rem",
-                fontWeight: "bold",
-              }}
-            >
-              Contact Us
-            </Button>
+            <Button>Contact Us</Button>
           </Link>
         </Toolbar>
       </AppBar>
