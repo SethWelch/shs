@@ -12,7 +12,7 @@ function Home() {
         gap={2}
         sx={{
           py: { xs: 4, sm: 8 },
-          background: "lightgray",
+          //   background: "lightgray",
         }}
       >
         <Grid item xs sx={{ minWidth: 500 }}>
@@ -32,6 +32,7 @@ function Home() {
                 fontFamily: "Raleway",
                 lineHeight: "1.2",
                 color: "navy",
+                textShadow: "#ffffff 4px 2px 10px",
               }}
             >
               Compliance and Security Expertise
@@ -159,7 +160,7 @@ function Home() {
           </Grid>
         </Box>
       </Box>
-      <Box sx={{ py: { xs: 4, sm: 8 }, background: "#f8f9fa" }}>
+      <Box sx={{ py: { xs: 4, sm: 8 } }}>
         <Typography
           sx={{
             textAlign: "center",
