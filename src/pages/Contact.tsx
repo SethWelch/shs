@@ -62,12 +62,11 @@ function Contact() {
           <Box sx={{ display: "flex", alignItems: "center", gap: 1 }}>
             <AlternateEmailIcon />
             <Typography
-              variant="h6"
               sx={{
                 fontFamily: "Raleway",
-                fontWeight: "bold",
                 width: "100%",
                 textAlign: "left",
+                fontSize: { xs: "1rem", sm: "1.2rem" },
               }}
             >
               email@strategichealthcaresolutions.org

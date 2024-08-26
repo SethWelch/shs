@@ -18,6 +18,7 @@ export default function DrawerAppBar({ title = "" }: Props) {
             background: "white",
             display: "flex",
             justifyContent: "space-between",
+            px: { xs: 1, sm: 4 },
           }}
         >
           <Link to="/" style={{ textDecoration: "none" }}>
@@ -26,7 +27,7 @@ export default function DrawerAppBar({ title = "" }: Props) {
               sx={{
                 flexGrow: 1,
                 textAlign: "left",
-                fontSize: { xs: "1.25rem", sm: "1.8rem" },
+                fontSize: { xs: "1rem", sm: "1.8rem" },
                 fontWeight: "bold",
                 color: "navy",
                 fontFamily: "Raleway",

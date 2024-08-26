@@ -8,6 +8,7 @@ function Layout() {
     <Box
       sx={{
         backgroundImage: `url(${abstract})`,
+        overflow: "hidden",
       }}
     >
       <DrawerAppBar title="Strategic Healthcare Solutions" />

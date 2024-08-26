@@ -15,8 +15,8 @@ function Button({ onClick, sx, children }: ButtonProps) {
         borderRadius: "4px",
         padding: "8px 16px",
         color: "white",
-        fontSize: "1rem",
-        fontWeight: "bold",
+        fontWeight: { xs: 500, sm: "bold" },
+        fontSize: { xs: ".75rem", sm: "1rem" },
         "&:hover": {
           backgroundColor: "rgba(0, 0, 128, 0.8)",
           color: "white",

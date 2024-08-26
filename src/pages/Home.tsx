@@ -5,58 +5,59 @@ import background from "../assets/images/background.jpg";
 function Home() {
   return (
     <>
-      <Grid
-        container
-        direction={{ xs: "column", sm: "row", md: "row" }}
-        justifyContent="center"
-        gap={2}
+      <Box
         sx={{
-          py: { xs: 4, sm: 8 },
-          //   background: "lightgray",
+          display: "flex",
+          justifyContent: "center",
+          alignItems: "center",
+          py: { xs: 2, sm: 4 },
+          flexDirection: {
+            xs: "column",
+            sm: "column",
+            md: "column",
+            lg: "row",
+          },
         }}
       >
-        <Grid item xs sx={{ minWidth: 500 }}>
-          <Box
+        <Box
+          sx={{
+            display: "flex",
+            flexDirection: "column",
+            px: { xs: 2, sm: 6 },
+            py: 4,
+          }}
+        >
+          <Typography
             sx={{
-              display: "flex",
-              flexDirection: "column",
-              px: 6,
-              py: 4,
+              textAlign: "left",
+              fontWeight: "bolder",
+              fontSize: { xs: "2rem", sm: "3.5rem" },
+              fontFamily: "Raleway",
+              lineHeight: "1.2",
+              color: "navy",
+              textShadow: "#ffffff 4px 2px 10px",
             }}
           >
-            <Typography
-              sx={{
-                textAlign: "left",
-                fontWeight: "bolder",
-                fontSize: "3.5rem",
-                fontFamily: "Raleway",
-                lineHeight: "1.2",
-                color: "navy",
-                textShadow: "#ffffff 4px 2px 10px",
-              }}
-            >
-              Compliance and Security Expertise
-            </Typography>
-            <Typography
-              variant="h5"
-              sx={{ textAlign: "left", mt: 2, color: "black" }}
-            >
-              If you think compliance experts or security officers are
-              expensive, wait until you see what amateurs cost.
-            </Typography>
-          </Box>
-        </Grid>
-        <Grid item xs sx={{ minWidth: 500 }}>
-          <img
-            style={{
-              width: "100%",
-              maxWidth: 800,
-            }}
-            src={`${background}`}
-            alt="placeholder"
-          />
-        </Grid>
-      </Grid>
+            Compliance and Security Expertise
+          </Typography>
+          <Typography
+            variant="h5"
+            sx={{ textAlign: "left", mt: 2, color: "black" }}
+          >
+            If you think compliance experts or security officers are expensive,
+            wait until you see what amateurs cost.
+          </Typography>
+        </Box>
+        <img
+          style={{
+            width: "100%",
+            maxWidth: 800,
+          }}
+          src={`${background}`}
+          alt="placeholder"
+        />
+      </Box>
+
       <Box
         sx={{
           width: "100%",
