@@ -79,6 +79,7 @@ function Home() {
             fontWeight: "600",
             fontFamily: "Raleway",
             fontSize: "2rem",
+            color: "navy",
           }}
         >
           About Us
@@ -114,6 +115,7 @@ function Home() {
               mb: 4,
               fontFamily: "Raleway",
               fontSize: "2rem",
+              color: "navy",
             }}
           >
             Our Services
@@ -170,6 +172,7 @@ function Home() {
             fontSize: "2rem",
             fontFamily: "Raleway",
             gap: 2,
+            color: "navy",
           }}
         >
           Insights
@@ -183,13 +186,16 @@ function Home() {
         sx={{
           display: "flex",
           height: "50px",
-          background: "black",
-          color: "white",
+          background: "white",
           alignItems: "center",
           justifyContent: "center",
+          boxShadow: 2,
+          borderTop: "1px solid lightgray",
         }}
       >
-        <Typography>©2024 Strategic Healthcare Solutions</Typography>
+        <Typography sx={{ color: "navy" }}>
+          ©2024 Strategic Healthcare Solutions
+        </Typography>
       </Box>
     </>
   );

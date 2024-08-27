@@ -11,27 +11,43 @@ function ServiceBox({ title, body }: Props) {
       sx={{
         display: "flex",
         flexDirection: "column",
-        p: 2,
-        backgroundColor: "#000080",
-        color: "white",
         maxWidth: { xs: "100%", sm: "340px", md: "340px" },
-        borderRadius: "8px",
+        borderRadius: 2,
+        border: "1px solid",
+        boxShadow: 2,
+        overflow: "hidden",
       }}
     >
-      <Typography
+      <Box
         sx={{
-          textAlign: "left",
-          fontWeight: "bold",
-          fontFamily: "Raleway",
-          mb: 2,
-          fontSize: "1.2rem",
+          backgroundColor: "#000080",
         }}
       >
-        {title}
-      </Typography>
-      <Typography sx={{ textAlign: "left", fontSize: "1rem" }}>
-        {body}
-      </Typography>
+        <Typography
+          sx={{
+            textAlign: "left",
+            fontWeight: "bold",
+            fontFamily: "Raleway",
+            fontSize: "1.2rem",
+            p: 2,
+            color: "white",
+          }}
+        >
+          {title}
+        </Typography>
+      </Box>
+      <Box>
+        <Typography
+          sx={{
+            textAlign: "left",
+            fontSize: "1rem",
+            background: "white",
+            p: 2,
+          }}
+        >
+          {body}
+        </Typography>
+      </Box>
     </Box>
   );
 }
