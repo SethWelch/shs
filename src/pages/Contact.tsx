@@ -1,5 +1,5 @@
 import { Box, Grid, TextField, Typography } from "@mui/material";
-import abstract from "../assets/images/abstract2.jpg";
+import abstract from "../assets/images/abstract.jpg";
 
 import PhoneIcon from "@mui/icons-material/Phone";
 import AlternateEmailIcon from "@mui/icons-material/AlternateEmail";
@@ -27,7 +27,8 @@ function Contact() {
           padding: 2,
           maxWidth: 800,
           position: "absolute",
-          top: { xs: "10%", sm: "25%" },
+          top: { xs: "80px", sm: "25%" },
+          height: { xs: "100%", sm: "auto" },
         }}
         gap={1}
       >

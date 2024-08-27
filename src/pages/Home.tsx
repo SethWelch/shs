@@ -1,6 +1,6 @@
 import { Box, Grid, Typography } from "@mui/material";
 import ServiceBox from "../ServiceBox";
-import background from "../assets/images/background.jpg";
+import office from "../assets/images/office.jpg";
 
 function Home() {
   return (
@@ -25,6 +25,7 @@ function Home() {
             flexDirection: "column",
             px: { xs: 2, sm: 6 },
             py: 4,
+            maxWidth: 700,
           }}
         >
           <Typography
@@ -53,7 +54,7 @@ function Home() {
             width: "100%",
             maxWidth: 800,
           }}
-          src={`${background}`}
+          src={`${office}`}
           alt="placeholder"
         />
       </Box>

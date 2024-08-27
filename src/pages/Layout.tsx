@@ -1,13 +1,13 @@
 import { Box } from "@mui/material";
 import DrawerAppBar from "../DrawerAppBar";
 import { Outlet } from "react-router-dom";
-import abstract from "../assets/images/sky2.jpg";
+import sky from "../assets/images/sky.jpg";
 
 function Layout() {
   return (
     <Box
       sx={{
-        backgroundImage: `url(${abstract})`,
+        backgroundImage: `url(${sky})`,
         overflow: "hidden",
       }}
     >
