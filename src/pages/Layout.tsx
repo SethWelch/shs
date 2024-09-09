@@ -11,7 +11,7 @@ function Layout() {
         overflow: "hidden",
       }}
     >
-      <DrawerAppBar title="Strategic Healthcare Solutions" />
+      <DrawerAppBar />
       <Box
         sx={{
           mt: "80px",

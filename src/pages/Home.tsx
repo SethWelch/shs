@@ -1,6 +1,7 @@
 import { Box, Grid, Typography } from "@mui/material";
-import ServiceBox from "../ServiceBox";
 import office from "../assets/images/office.jpg";
+import SectionHeader from "../components/SectionHeader";
+import ServiceBox from "../components/ServiceBox";
 
 function Home() {
   return (
@@ -73,17 +74,10 @@ function Home() {
           gap: 2,
         }}
       >
-        <Typography
-          sx={{
-            textAlign: { sm: "center", md: "center", lg: "left" },
-            fontWeight: "600",
-            fontFamily: "Raleway",
-            fontSize: "2rem",
-            color: "navy",
-          }}
-        >
-          About Us
-        </Typography>
+        <SectionHeader
+          title="About Us"
+          sx={{ textAlign: { sm: "center", md: "center", lg: "left" } }}
+        />
         <Typography
           variant="h6"
           sx={{ textAlign: "left", fontSize: "1.25rem", maxWidth: "800px" }}
@@ -107,19 +101,7 @@ function Home() {
         }}
       >
         <Box>
-          <Typography
-            variant="h5"
-            sx={{
-              textAlign: "center",
-              fontWeight: "600",
-              mb: 4,
-              fontFamily: "Raleway",
-              fontSize: "2rem",
-              color: "navy",
-            }}
-          >
-            Our Services
-          </Typography>
+          <SectionHeader title="Our Services" sx={{ marginBottom: 4 }} />
           <Grid
             container
             gap={2}
@@ -165,18 +147,7 @@ function Home() {
         </Box>
       </Box>
       <Box sx={{ py: { xs: 4, sm: 8 } }}>
-        <Typography
-          sx={{
-            textAlign: "center",
-            fontWeight: "600",
-            fontSize: "2rem",
-            fontFamily: "Raleway",
-            gap: 2,
-            color: "navy",
-          }}
-        >
-          Insights
-        </Typography>
+        <SectionHeader title="Insights" sx={{ marginBottom: 2 }} />
         <Typography sx={{ fontSize: "1.25rem" }}>
           Transform data into actionable insights with our comprehensive
           executive dashboards...
@@ -186,14 +157,14 @@ function Home() {
         sx={{
           display: "flex",
           height: "50px",
-          background: "white",
+          background: "black",
           alignItems: "center",
           justifyContent: "center",
           boxShadow: 2,
           borderTop: "1px solid lightgray",
         }}
       >
-        <Typography sx={{ color: "navy" }}>
+        <Typography sx={{ color: "white" }}>
           ©2024 Strategic Healthcare Solutions
         </Typography>
       </Box>
