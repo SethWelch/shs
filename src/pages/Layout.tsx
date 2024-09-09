@@ -8,13 +8,14 @@ function Layout() {
     <Box
       sx={{
         backgroundImage: `url(${sky})`,
+        backgroundSize: "stretch",
         overflow: "hidden",
       }}
     >
       <DrawerAppBar />
       <Box
         sx={{
-          mt: "80px",
+          mt: "60px",
         }}
       >
         <Outlet />

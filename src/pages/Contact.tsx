@@ -13,7 +13,7 @@ function Contact() {
         flexDirection: "column",
         alignItems: "center",
         backgroundColor: "bisque",
-        height: "calc(100vh - 80px)",
+        height: "calc(100vh - 60px)",
         backgroundImage: `url(${abstract})`,
         backgroundSize: "cover",
       }}
@@ -27,8 +27,8 @@ function Contact() {
           padding: 2,
           maxWidth: 800,
           position: "absolute",
-          top: { xs: "80px", sm: "25%" },
-          height: { xs: "100%", sm: "auto" },
+          top: { xs: "60px", sm: "25%" },
+          height: { xs: "fit-content", sm: "auto" },
         }}
         gap={1}
       >
