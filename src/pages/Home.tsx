@@ -1,5 +1,6 @@
 import { Box, Grid, Typography } from "@mui/material";
 import office from "../assets/images/office.jpg";
+import office2 from "../assets/images/office-extended.png";
 import SectionHeader from "../components/SectionHeader";
 import ServiceBox from "../components/ServiceBox";
 
@@ -12,7 +13,7 @@ function Home() {
           flexDirection: { xs: "column", sm: "column", md: "row" },
           alignItems: "stretch",
           minHeight: { xs: 300, sm: 300, md: 600 },
-          backgroundImage: { xs: "unset", sm: "unset", md: `url(${office})` },
+          backgroundImage: { xs: "unset", sm: "unset", md: `url(${office2})` },
           backgroundSize: "cover",
           backgroundRepeat: "no-repeat",
           backgroundPosition: "center",
