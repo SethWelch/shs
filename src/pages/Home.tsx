@@ -1,5 +1,6 @@
 import { Box, Grid, Typography } from "@mui/material";
 import office from "../assets/images/office.jpg";
+import office2 from "../assets/images/office-extended.png";
 import SectionHeader from "../components/SectionHeader";
 import ServiceBox from "../components/ServiceBox";
 
@@ -9,24 +10,26 @@ function Home() {
       <Box
         sx={{
           display: "flex",
-          justifyContent: "center",
-          alignItems: "center",
-          py: { xs: 2, sm: 4 },
-          flexDirection: {
-            xs: "column",
-            sm: "column",
-            md: "column",
-            lg: "row",
-          },
+          flexDirection: { xs: "column", sm: "column", md: "row" },
+          alignItems: "stretch",
+          minHeight: { xs: 300, sm: 300, md: 600 },
+          backgroundImage: { xs: "unset", sm: "unset", md: `url(${office2})` },
+          backgroundSize: "cover",
+          backgroundRepeat: "no-repeat",
+          backgroundPosition: "center",
         }}
       >
         <Box
           sx={{
             display: "flex",
             flexDirection: "column",
+            justifyContent: "center",
             px: { xs: 2, sm: 6 },
-            py: 4,
+            height: "auto",
             maxWidth: 700,
+            minHeight: { xs: 300, sm: 300, md: 600 },
+            background:
+              "linear-gradient(to right, rgba(248,249,250,1) 40%,rgba(248,249,250,.65) 80%, rgba(248,249,250,0) 100%)",
           }}
         >
           <Typography
@@ -44,20 +47,28 @@ function Home() {
           </Typography>
           <Typography
             variant="h5"
-            sx={{ textAlign: "left", mt: 2, color: "black" }}
+            sx={{
+              textAlign: "left",
+              mt: 2,
+              color: "black",
+              width: "80%",
+              textShadow: "#ffffff 4px 2px 10px",
+            }}
           >
             If you think compliance experts or security officers are expensive,
             wait until you see what amateurs cost.
           </Typography>
         </Box>
-        <img
-          style={{
-            width: "100%",
-            maxWidth: 800,
-          }}
-          src={`${office}`}
-          alt="placeholder"
-        />
+        <Box sx={{ display: { xs: "block", sm: "block", md: "none" } }}>
+          <img
+            style={{
+              width: "100%",
+              maxWidth: 800,
+            }}
+            src={`${office}`}
+            alt="placeholder"
+          />
+        </Box>
       </Box>
 
       <Box
