@@ -5,7 +5,9 @@ type Props = {
   body: string;
 };
 
-function ServiceBox({ title, body }: Props) {
+function ServiceCard({ title, body }: Props) {
+  const backgroundColor = "#000080";
+
   return (
     <Box
       sx={{
@@ -20,7 +22,7 @@ function ServiceBox({ title, body }: Props) {
     >
       <Box
         sx={{
-          backgroundColor: "#000080",
+          backgroundColor: backgroundColor,
         }}
       >
         <Typography
@@ -52,4 +54,4 @@ function ServiceBox({ title, body }: Props) {
   );
 }
 
-export default ServiceBox;
+export default ServiceCard;

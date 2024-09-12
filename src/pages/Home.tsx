@@ -2,7 +2,7 @@ import { Box, Grid, Typography } from "@mui/material";
 import office from "../assets/images/office.jpg";
 import office2 from "../assets/images/office-extended.png";
 import SectionHeader from "../components/SectionHeader";
-import ServiceBox from "../components/ServiceBox";
+import ServiceCard from "../components/ServiceCard";
 
 function Home() {
   return (
@@ -125,31 +125,31 @@ function Home() {
             sx={{ maxWidth: "1056px" }}
           >
             <Grid item>
-              <ServiceBox
+              <ServiceCard
                 title="CMS Promoting Interoperability Compliance"
                 body="Assistance with meeting CMS requirements for electronic health records and promoting interoperability to enhance patient care."
               />
             </Grid>
             <Grid item>
-              <ServiceBox
+              <ServiceCard
                 title="Security & Privacy Risk Assessments"
                 body="Evaluating potential risks and vulnerabilities to the confidentiality, integrity, and availability of electronic protected health information."
               />
             </Grid>
             <Grid item>
-              <ServiceBox
+              <ServiceCard
                 title="SAFER Guide Facilitation and Completion"
                 body="Guiding healthcare organizations through SAFER Guides to ensure the safe and secure use of electronic health records."
               />
             </Grid>
             <Grid item>
-              <ServiceBox
+              <ServiceCard
                 title="HIPAA Compliance Assessments"
                 body="Comprehensive assessments to ensure compliance with the Health Insurance Portability and Accountability Act regulations."
               />
             </Grid>
             <Grid item>
-              <ServiceBox
+              <ServiceCard
                 title="CARF Assessments"
                 body="Specialized assistance with Commission on Accreditation of Rehabilitation Facilities (CARF) standards for quality and results."
               />
