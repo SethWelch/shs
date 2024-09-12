@@ -10,9 +10,9 @@ function Button({ onClick, sx, children }: ButtonProps) {
   return (
     <MuiButton
       sx={{
-        backgroundColor: "navy",
-        border: "2px solid white",
-        borderRadius: "4px",
+        backgroundColor: "#07075d",
+        border: "1px solid white",
+        borderRadius: 0,
         padding: "6px 12px",
         color: "white",
         fontWeight: { xs: 500, sm: 600 },
