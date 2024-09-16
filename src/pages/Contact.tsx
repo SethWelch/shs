@@ -1,11 +1,50 @@
-import { Box, Grid, TextField, Typography } from "@mui/material";
+import { Alert, AlertProps, Box, Grid, Snackbar, TextField, Typography } from "@mui/material";
 import abstract from "../assets/images/abstract.jpg";
 
 import PhoneIcon from "@mui/icons-material/Phone";
 import AlternateEmailIcon from "@mui/icons-material/AlternateEmail";
 import Button from "../components/Button";
 
+import { useEffect, useState } from "react";
+
+import emailjs from "@emailjs/browser";
+
+import email from "../email.json"
+
+const emptyAlert = { open: false, message: "", severity: "" }
+
 function Contact() {
+  const [alert, setAlert] = useState(emptyAlert)
+
+  const [form, setForm] = useState({
+    name: "",
+    email: "",
+    company: "",
+    phone: "",
+    message: "",
+  });
+
+  useEffect(() => emailjs.init(email.public), []);
+
+  const handleSubmit = async () => {
+    const serviceId = email.id;
+    const templateId = email.template;
+
+    try {
+      await emailjs.send(serviceId, templateId, {
+        name: form.name,
+        email: form.email,
+        company: form.company,
+        phone: form.phone,
+        message: form.message,
+      });
+      setAlert({ open: true, message: "Email sent successfully", severity: "success"})
+    } catch (error) {
+      setAlert({ open: true, message: "Email failed to send", severity: "error"})
+      console.log(error);
+    }
+  };
+
   return (
     <Box
       sx={{
@@ -18,6 +57,20 @@ function Contact() {
         backgroundSize: "cover",
       }}
     >
+      <Snackbar
+        anchorOrigin={{ vertical: "bottom", horizontal: "center" }}
+        open={alert.open}
+        onClose={() => setAlert(emptyAlert)}
+      >
+          <Alert
+            onClose={() => setAlert(emptyAlert)}
+            severity={alert.severity as AlertProps["severity"]}
+            variant="filled"
+            sx={{ width: '100%', background: alert.severity === "error" ? "darkred" : "navy" }}
+          >
+            {alert.message}
+          </Alert>
+      </Snackbar>
       <Grid
         container
         sx={{
@@ -70,7 +123,7 @@ function Contact() {
                 fontSize: { xs: "1rem", sm: "1.2rem" },
               }}
             >
-              email@strategichealthcaresolutions.org
+              sheryl@strategichealthcaresolutions.org
             </Typography>
           </Box>
         </Box>
@@ -112,10 +165,10 @@ function Contact() {
           sx={{ flexDirection: { xs: "column", sm: "row" } }}
         >
           <Grid item xs>
-            <TextField label="Name" sx={{ width: "100%" }} />
+            <TextField label="Name" sx={{ width: "100%" }} inputProps={{ maxLength: 64 }} value={form.name} onChange={(e) => setForm((prev) => ({ ...prev, name: e.target.value })) } />
           </Grid>
           <Grid item xs>
-            <TextField label="Company" sx={{ width: "100%" }} />
+            <TextField label="Company" sx={{ width: "100%" }} inputProps={{ maxLength: 64 }} value={form.company} onChange={(e) => setForm((prev) => ({ ...prev, company: e.target.value })) } />
           </Grid>
         </Grid>
         <Grid
@@ -126,10 +179,10 @@ function Contact() {
           sx={{ flexDirection: { xs: "column", sm: "row" } }}
         >
           <Grid item xs>
-            <TextField label="Email" sx={{ width: "100%" }} />
+            <TextField label="Email" sx={{ width: "100%" }} inputProps={{ maxLength: 64 }} value={form.email} onChange={(e) => setForm((prev) => ({ ...prev, email: e.target.value })) } />
           </Grid>
           <Grid item xs>
-            <TextField label="Phone" sx={{ width: "100%" }} />
+            <TextField label="Phone" sx={{ width: "100%" }} inputProps={{ maxLength: 20 }} value={form.phone} onChange={(e) => setForm((prev) => ({ ...prev, phone: e.target.value })) }/>
           </Grid>
         </Grid>
         <Grid item xs={12}>
@@ -139,9 +192,12 @@ function Contact() {
             minRows={4}
             maxRows={4}
             multiline
+            inputProps={{ maxLength: 400 }}
+            value={form.message} onChange={(e) => setForm((prev) => ({ ...prev, message: e.target.value })) }
           />
+          <Box sx={{ textAlign: "end" }}>{form.message.length || 0}/400</Box>
         </Grid>
-        <Button sx={{ ml: "auto" }}>Send</Button>
+        <Button sx={{ ml: "auto" }} onClick={handleSubmit}>Send</Button>
       </Grid>
     </Box>
   );
