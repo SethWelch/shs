@@ -1,9 +1,8 @@
 import { Alert, AlertProps, Box, Grid, Snackbar, TextField, Typography } from "@mui/material";
 import abstract from "../assets/images/abstract.jpg";
-
-import PhoneIcon from "@mui/icons-material/Phone";
 import AlternateEmailIcon from "@mui/icons-material/AlternateEmail";
 import Button from "../components/Button";
+import _ from "lodash"
 
 import { useEffect, useState } from "react";
 
@@ -24,7 +23,20 @@ function Contact() {
     message: "",
   });
 
+  const [error, setError] = useState(false)
+
   useEffect(() => emailjs.init(email.public), []);
+
+  const submitCheck = () => {
+    const { name, email, phone, message } = form
+
+    if (!name || !email || !phone || !message) {
+      setError(true)
+    } else {
+      setError(false)
+      handleSubmit()
+    }
+  }
 
   const handleSubmit = async () => {
     const serviceId = email.id;
@@ -98,21 +110,6 @@ function Contact() {
         </Typography>
 
         <Box>
-          <Box sx={{ display: "flex", alignItems: "center", gap: 1, mb: 1 }}>
-            <PhoneIcon />
-            <Typography
-              variant="h6"
-              sx={{
-                fontFamily: "Raleway",
-                fontWeight: "bold",
-                width: "100%",
-                textAlign: "left",
-              }}
-            >
-              555-555-5555
-            </Typography>
-          </Box>
-
           <Box sx={{ display: "flex", alignItems: "center", gap: 1 }}>
             <AlternateEmailIcon />
             <Typography
@@ -165,7 +162,7 @@ function Contact() {
           sx={{ flexDirection: { xs: "column", sm: "row" } }}
         >
           <Grid item xs>
-            <TextField label="Name" sx={{ width: "100%" }} inputProps={{ maxLength: 64 }} value={form.name} onChange={(e) => setForm((prev) => ({ ...prev, name: e.target.value })) } />
+            <TextField required error={error && !form.name} label="Name" sx={{ width: "100%" }} inputProps={{ maxLength: 64 }} value={form.name} onChange={(e) => setForm((prev) => ({ ...prev, name: e.target.value })) } />
           </Grid>
           <Grid item xs>
             <TextField label="Company" sx={{ width: "100%" }} inputProps={{ maxLength: 64 }} value={form.company} onChange={(e) => setForm((prev) => ({ ...prev, company: e.target.value })) } />
@@ -179,10 +176,10 @@ function Contact() {
           sx={{ flexDirection: { xs: "column", sm: "row" } }}
         >
           <Grid item xs>
-            <TextField label="Email" sx={{ width: "100%" }} inputProps={{ maxLength: 64 }} value={form.email} onChange={(e) => setForm((prev) => ({ ...prev, email: e.target.value })) } />
+            <TextField required error={error && !form.email} label="Email" sx={{ width: "100%" }} inputProps={{ maxLength: 64 }} value={form.email} onChange={(e) => setForm((prev) => ({ ...prev, email: e.target.value })) } />
           </Grid>
           <Grid item xs>
-            <TextField label="Phone" sx={{ width: "100%" }} inputProps={{ maxLength: 20 }} value={form.phone} onChange={(e) => setForm((prev) => ({ ...prev, phone: e.target.value })) }/>
+            <TextField required error={error && !form.phone} label="Phone" sx={{ width: "100%" }} inputProps={{ maxLength: 30 }} value={form.phone} onChange={(e) => setForm((prev) => ({ ...prev, phone: e.target.value })) }/>
           </Grid>
         </Grid>
         <Grid item xs={12}>
@@ -192,12 +189,14 @@ function Contact() {
             minRows={4}
             maxRows={4}
             multiline
-            inputProps={{ maxLength: 400 }}
+            inputProps={{ maxLength: 500 }}
             value={form.message} onChange={(e) => setForm((prev) => ({ ...prev, message: e.target.value })) }
+            required
+            error={error && !form.message}
           />
-          <Box sx={{ textAlign: "end" }}>{form.message.length || 0}/400</Box>
+          <Box sx={{ textAlign: "end" }}>{form.message.length || 0}/500</Box>
         </Grid>
-        <Button sx={{ ml: "auto" }} onClick={handleSubmit}>Send</Button>
+        <Button sx={{ ml: "auto" }} onClick={submitCheck}>Send</Button>
       </Grid>
     </Box>
   );

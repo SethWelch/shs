@@ -1,57 +1,75 @@
-import { Box, Typography } from "@mui/material";
+import { Box, Typography } from '@mui/material'
 
 type Props = {
-  title: string;
-  body: string;
-};
+  title: string
+  body: string
+  backgroundColor?: string
+  variant?: 'light' | 'medium' | 'dark'
+}
 
-function ServiceCard({ title, body }: Props) {
-  const backgroundColor = "#000080";
+function ServiceCard({ title, body, variant = 'dark' }: Props) {
+  const getVariant = () => {
+    if (variant === 'light') {
+      return {
+        backgroundColor: '#2c6fa7',
+        color: 'white',
+      }
+    } else if (variant === 'medium') {
+      return {
+        backgroundColor: '#07355b',
+        color: 'white',
+      }
+    } else {
+      return {
+        backgroundColor: '#041933',
+        color: 'white',
+      }
+    }
+  }
 
   return (
     <Box
       sx={{
-        display: "flex",
-        flexDirection: "column",
-        maxWidth: { xs: "100%", sm: "340px", md: "340px" },
-        borderRadius: 2,
-        border: "1px solid",
+        display: 'flex',
+        flexDirection: 'column',
+        maxWidth: { xs: '100%', sm: '300px', md: '300px' },
+        borderRadius: 0,
+        border: '1px solid',
         boxShadow: 2,
-        overflow: "hidden",
+        overflow: 'hidden',
+        p: 1,
+        minHeight: 300,
+        height: '100%',
+        ...getVariant(),
       }}
     >
-      <Box
+      <Typography
         sx={{
-          backgroundColor: backgroundColor,
+          textAlign: 'center',
+          fontWeight: 'bold',
+          fontFamily: 'Raleway',
+          fontSize: '1.2rem',
+          p: '16px 8px',
+          minHeight: 100,
+          display: 'flex',
+          alignItems: 'center',
+          justifyContent: 'center',
         }}
       >
-        <Typography
-          sx={{
-            textAlign: "left",
-            fontWeight: "bold",
-            fontFamily: "Raleway",
-            fontSize: "1.2rem",
-            p: 2,
-            color: "white",
-          }}
-        >
-          {title}
-        </Typography>
-      </Box>
-      <Box>
-        <Typography
-          sx={{
-            textAlign: "left",
-            fontSize: "1rem",
-            background: "white",
-            p: 2,
-          }}
-        >
-          {body}
-        </Typography>
-      </Box>
+        {title}
+      </Typography>
+      <Box sx={{ borderBottom: '1px solid white', mx: 2 }} />
+      <Typography
+        sx={{
+          textAlign: 'left',
+          fontSize: '1rem',
+          p: '16px 16px 0 16px',
+        }}
+      >
+        {body}
+      </Typography>
     </Box>
-  );
+  )
 }
 
-export default ServiceCard;
+export default ServiceCard
