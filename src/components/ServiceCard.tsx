@@ -35,7 +35,7 @@ function ServiceCard({ title, body, variant = 'dark' }: Props) {
         maxWidth: { xs: '100%', sm: '300px', md: '300px' },
         borderRadius: 0,
         border: '1px solid',
-        boxShadow: 2,
+        boxShadow: '5px 5px 5px grey',
         overflow: 'hidden',
         p: 1,
         minHeight: 300,

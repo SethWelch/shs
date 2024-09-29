@@ -1,9 +1,13 @@
 import { Box, Grid, IconButton, Typography } from '@mui/material'
 import office from '../assets/images/office.jpg'
 import office2 from '../assets/images/office-extended.png'
+import sethProfile from '../assets/images/seth-profile.png'
+import sherylProfile from '../assets/images/sheryl-profile.png'
+
 import SectionHeader from '../components/SectionHeader'
 import ServiceCard from '../components/ServiceCard'
 import LinkedInIcon from '@mui/icons-material/LinkedIn'
+import ProfileCard from '../components/ProfileCard'
 
 function Home() {
   return (
@@ -71,38 +75,6 @@ function Home() {
           />
         </Box>
       </Box>
-
-      <Box
-        sx={{
-          width: '100%',
-          display: 'flex',
-          flexDirection: 'column',
-          justifyContent: 'center',
-          alignItems: 'center',
-          background: '#f8f9fa',
-          borderBottom: '1px solid lightgray',
-          py: 4,
-          px: 2,
-          gap: 2,
-        }}
-      >
-        <SectionHeader
-          title="About Us"
-          sx={{ textAlign: { sm: 'center', md: 'center', lg: 'left' } }}
-        />
-        <Typography
-          variant="h6"
-          sx={{ textAlign: 'left', fontSize: '1.25rem', maxWidth: '800px' }}
-        >
-          Strategic Healthcare Solutions employs a team of regulatory and
-          cybersecurity experts that assist hospitals and health systems across
-          the country with compliance. This dedicated team will perform
-          assessments, identify gaps and/or vulnerabilities, generate executive
-          dashboards, and project manage issues to closure. Let us tell you what
-          vulnerabilities should be keeping your leadership up at night and how
-          to mitigate those risks!
-        </Typography>
-      </Box>
       <Box
         sx={{
           display: 'flex',
@@ -114,16 +86,7 @@ function Home() {
       >
         <Box>
           <SectionHeader title="Our Services" sx={{ marginBottom: 4 }} />
-          <Grid
-            container
-            justifyContent={{
-              xs: 'center',
-              sm: 'center',
-              md: 'center',
-              lg: 'start',
-            }}
-            gap={1}
-          >
+          <Grid container sx={{ justifyContent: 'center' }} gap={2}>
             <Grid item sx={{ m: 0, position: 'relative' }}>
               <ServiceCard
                 variant="light"
@@ -160,6 +123,68 @@ function Home() {
             </Grid>
           </Grid>
         </Box>
+      </Box>
+      <Box
+        sx={{
+          width: '100%',
+          display: 'flex',
+          flexDirection: 'column',
+          justifyContent: 'center',
+          alignItems: 'center',
+          background: '#f8f9fa',
+          borderBottom: '1px solid lightgray',
+          py: 4,
+          px: 2,
+          gap: 2,
+        }}
+      >
+        <SectionHeader
+          title="About Us"
+          sx={{ textAlign: { sm: 'center', md: 'center', lg: 'left' } }}
+        />
+        <Typography
+          variant="h6"
+          sx={{ textAlign: 'left', fontSize: '1.25rem', maxWidth: '800px' }}
+        >
+          Strategic Healthcare Solutions employs a team of regulatory and
+          cybersecurity experts that assist hospitals and health systems across
+          the country with compliance. This dedicated team will perform
+          assessments, identify gaps and/or vulnerabilities, generate executive
+          dashboards, and project manage issues to closure. Let us tell you what
+          vulnerabilities should be keeping your leadership up at night and how
+          to mitigate those risks!
+        </Typography>
+      </Box>
+      <Box
+        sx={{
+          display: 'flex',
+          justifyContent: 'center',
+          flexDirection: 'column',
+          py: { xs: 4, sm: 8 },
+          background: '#f8f9fa',
+          borderBottom: '1px solid lightgray',
+        }}
+      >
+        <SectionHeader title="The Team" sx={{ marginBottom: 4 }} />
+        <Grid container sx={{ justifyContent: 'center' }} gap={2}>
+          <Grid item sx={{ m: 0, position: 'relative' }}>
+            <ProfileCard
+              name="Sheryl Clark"
+              title="President/CEO"
+              image={sherylProfile}
+            />
+          </Grid>
+          <Grid item sx={{ m: 0, position: 'relative' }}>
+            <ProfileCard name="Katherine Uhling" title="Chief People Officer" />
+          </Grid>
+          <Grid item sx={{ m: 0, position: 'relative' }}>
+            <ProfileCard
+              name="Seth Welch"
+              title="Web Developer"
+              image={sethProfile}
+            />
+          </Grid>
+        </Grid>
       </Box>
       <Box sx={{ py: { xs: 4, sm: 8 } }}>
         <SectionHeader title="Insights" sx={{ marginBottom: 2 }} />
