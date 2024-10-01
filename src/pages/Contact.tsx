@@ -1,19 +1,27 @@
-import { Alert, AlertProps, Box, Grid, Snackbar, TextField, Typography } from "@mui/material";
+import {
+  Alert,
+  AlertProps,
+  Box,
+  Grid,
+  Snackbar,
+  TextField,
+  Typography,
+} from "@mui/material";
 import abstract from "../assets/images/abstract.jpg";
 import AlternateEmailIcon from "@mui/icons-material/AlternateEmail";
 import Button from "../components/Button";
-import _ from "lodash"
+import _ from "lodash";
 
 import { useEffect, useState } from "react";
 
 import emailjs from "@emailjs/browser";
 
-import email from "../email.json"
+import email from "../email.json";
 
-const emptyAlert = { open: false, message: "", severity: "" }
+const emptyAlert = { open: false, message: "", severity: "" };
 
 function Contact() {
-  const [alert, setAlert] = useState(emptyAlert)
+  const [alert, setAlert] = useState(emptyAlert);
 
   const [form, setForm] = useState({
     name: "",
@@ -23,20 +31,20 @@ function Contact() {
     message: "",
   });
 
-  const [error, setError] = useState(false)
+  const [error, setError] = useState(false);
 
   useEffect(() => emailjs.init(email.public), []);
 
   const submitCheck = () => {
-    const { name, email, phone, message } = form
+    const { name, email, phone, message } = form;
 
     if (!name || !email || !phone || !message) {
-      setError(true)
+      setError(true);
     } else {
-      setError(false)
-      handleSubmit()
+      setError(false);
+      handleSubmit();
     }
-  }
+  };
 
   const handleSubmit = async () => {
     const serviceId = email.id;
@@ -50,9 +58,17 @@ function Contact() {
         phone: form.phone,
         message: form.message,
       });
-      setAlert({ open: true, message: "Email sent successfully", severity: "success"})
+      setAlert({
+        open: true,
+        message: "Email sent successfully",
+        severity: "success",
+      });
     } catch (error) {
-      setAlert({ open: true, message: "Email failed to send", severity: "error"})
+      setAlert({
+        open: true,
+        message: "Email failed to send",
+        severity: "error",
+      });
       console.log(error);
     }
   };
@@ -74,14 +90,17 @@ function Contact() {
         open={alert.open}
         onClose={() => setAlert(emptyAlert)}
       >
-          <Alert
-            onClose={() => setAlert(emptyAlert)}
-            severity={alert.severity as AlertProps["severity"]}
-            variant="filled"
-            sx={{ width: '100%', background: alert.severity === "error" ? "darkred" : "navy" }}
-          >
-            {alert.message}
-          </Alert>
+        <Alert
+          onClose={() => setAlert(emptyAlert)}
+          severity={alert.severity as AlertProps["severity"]}
+          variant="filled"
+          sx={{
+            width: "100%",
+            background: alert.severity === "error" ? "darkred" : "navy",
+          }}
+        >
+          {alert.message}
+        </Alert>
       </Snackbar>
       <Grid
         container
@@ -162,10 +181,28 @@ function Contact() {
           sx={{ flexDirection: { xs: "column", sm: "row" } }}
         >
           <Grid item xs>
-            <TextField required error={error && !form.name} label="Name" sx={{ width: "100%" }} inputProps={{ maxLength: 64 }} value={form.name} onChange={(e) => setForm((prev) => ({ ...prev, name: e.target.value })) } />
+            <TextField
+              required
+              error={error && !form.name}
+              label="Name"
+              sx={{ width: "100%" }}
+              inputProps={{ maxLength: 64 }}
+              value={form.name}
+              onChange={(e) =>
+                setForm((prev) => ({ ...prev, name: e.target.value }))
+              }
+            />
           </Grid>
           <Grid item xs>
-            <TextField label="Company" sx={{ width: "100%" }} inputProps={{ maxLength: 64 }} value={form.company} onChange={(e) => setForm((prev) => ({ ...prev, company: e.target.value })) } />
+            <TextField
+              label="Company"
+              sx={{ width: "100%" }}
+              inputProps={{ maxLength: 64 }}
+              value={form.company}
+              onChange={(e) =>
+                setForm((prev) => ({ ...prev, company: e.target.value }))
+              }
+            />
           </Grid>
         </Grid>
         <Grid
@@ -176,10 +213,30 @@ function Contact() {
           sx={{ flexDirection: { xs: "column", sm: "row" } }}
         >
           <Grid item xs>
-            <TextField required error={error && !form.email} label="Email" sx={{ width: "100%" }} inputProps={{ maxLength: 64 }} value={form.email} onChange={(e) => setForm((prev) => ({ ...prev, email: e.target.value })) } />
+            <TextField
+              required
+              error={error && !form.email}
+              label="Email"
+              sx={{ width: "100%" }}
+              inputProps={{ maxLength: 64 }}
+              value={form.email}
+              onChange={(e) =>
+                setForm((prev) => ({ ...prev, email: e.target.value }))
+              }
+            />
           </Grid>
           <Grid item xs>
-            <TextField required error={error && !form.phone} label="Phone" sx={{ width: "100%" }} inputProps={{ maxLength: 30 }} value={form.phone} onChange={(e) => setForm((prev) => ({ ...prev, phone: e.target.value })) }/>
+            <TextField
+              required
+              error={error && !form.phone}
+              label="Phone"
+              sx={{ width: "100%" }}
+              inputProps={{ maxLength: 30 }}
+              value={form.phone}
+              onChange={(e) =>
+                setForm((prev) => ({ ...prev, phone: e.target.value }))
+              }
+            />
           </Grid>
         </Grid>
         <Grid item xs={12}>
@@ -190,13 +247,18 @@ function Contact() {
             maxRows={4}
             multiline
             inputProps={{ maxLength: 500 }}
-            value={form.message} onChange={(e) => setForm((prev) => ({ ...prev, message: e.target.value })) }
+            value={form.message}
+            onChange={(e) =>
+              setForm((prev) => ({ ...prev, message: e.target.value }))
+            }
             required
             error={error && !form.message}
           />
           <Box sx={{ textAlign: "end" }}>{form.message.length || 0}/500</Box>
         </Grid>
-        <Button sx={{ ml: "auto" }} onClick={submitCheck}>Send</Button>
+        <Button sx={{ ml: "auto" }} onClick={submitCheck}>
+          Send
+        </Button>
       </Grid>
     </Box>
   );
