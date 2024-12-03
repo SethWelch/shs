@@ -4,6 +4,7 @@ import office2 from "../assets/images/office-extended.png";
 import katherineProfile from "../assets/images/katherine-profile.png";
 import sethProfile from "../assets/images/seth-profile.png";
 import sherylProfile from "../assets/images/sheryl-profile.png";
+import johnProfile from "../assets/images/john-profile.png";
 
 import SectionHeader from "../components/SectionHeader";
 import ServiceCard from "../components/ServiceCard";
@@ -161,7 +162,7 @@ function Home() {
           display: "flex",
           justifyContent: "center",
           flexDirection: "column",
-          py: { xs: 4, sm: 8 },
+          py: 8,
           background: "#f8f9fa",
           borderBottom: "1px solid lightgray",
         }}
@@ -180,6 +181,14 @@ function Home() {
               name="Katherine Uhling"
               title="Chief People Officer"
               image={katherineProfile}
+            />
+          </Grid>
+          <Grid item sx={{ m: 0, position: "relative" }}>
+            <ProfileCard
+              name="John DeDonder"
+              subName="BSCS MSIS"
+              title="Director of Public Safety Programs"
+              image={johnProfile}
             />
           </Grid>
           <Grid item sx={{ m: 0, position: "relative" }}>

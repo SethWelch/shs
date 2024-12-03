@@ -3,11 +3,12 @@ import PersonIcon from "@mui/icons-material/Person";
 
 type ProfileCardProps = {
   name: string;
-  title: string;
+  subName?: string;
+  title?: string;
   image?: string;
 };
 
-function ProfileCard({ name, title, image }: ProfileCardProps) {
+function ProfileCard({ name, subName, title, image }: ProfileCardProps) {
   return (
     <Box
       sx={{
@@ -18,6 +19,8 @@ function ProfileCard({ name, title, image }: ProfileCardProps) {
         background: "#07355b",
         padding: "16px 24px",
         boxShadow: "5px 5px 5px grey",
+        minWidth: 300,
+        minHeight: 325,
       }}
     >
       <Box
@@ -69,6 +72,21 @@ function ProfileCard({ name, title, image }: ProfileCardProps) {
         >
           {name}
         </label>
+        {subName && (
+          <label
+            style={{
+              width: "100%",
+              display: "block",
+              fontSize: 16,
+              fontWeight: 600,
+              color: "white",
+              textWrap: "nowrap",
+            }}
+          >
+            {subName}
+          </label>
+        )}
+
         <label
           style={{
             width: "100%",
@@ -77,7 +95,7 @@ function ProfileCard({ name, title, image }: ProfileCardProps) {
             textWrap: "nowrap",
           }}
         >
-          {title}
+          {title ? title : "Pending"}
         </label>
       </Box>
     </Box>
