@@ -10,7 +10,6 @@ import {
 import abstract from "../assets/images/abstract.jpg";
 import AlternateEmailIcon from "@mui/icons-material/AlternateEmail";
 import Button from "../components/Button";
-import _ from "lodash";
 
 import { useEffect, useState } from "react";
 
@@ -113,8 +112,8 @@ function Contact() {
           position: "absolute",
           top: { xs: "60px", sm: "25%" },
           height: { xs: "fit-content", sm: "auto" },
+          gap: 1,
         }}
-        gap={1}
       >
         <Typography
           variant="h4"
@@ -175,29 +174,27 @@ function Contact() {
         </Typography>
         <Grid
           container
-          item
-          xs={12}
-          gap={1}
-          sx={{ flexDirection: { xs: "column", sm: "row" } }}
+          size={12}
+          sx={{ flexDirection: { xs: "column", sm: "row" }, gap: 1 }}
         >
-          <Grid item xs>
+          <Grid size="grow">
             <TextField
               required
               error={error && !form.name}
               label="Name"
               sx={{ width: "100%" }}
-              inputProps={{ maxLength: 64 }}
+              slotProps={{ htmlInput: { maxLength: 64 } }}
               value={form.name}
               onChange={(e) =>
                 setForm((prev) => ({ ...prev, name: e.target.value }))
               }
             />
           </Grid>
-          <Grid item xs>
+          <Grid size="grow">
             <TextField
               label="Company"
               sx={{ width: "100%" }}
-              inputProps={{ maxLength: 64 }}
+              slotProps={{ htmlInput: { maxLength: 64 } }}
               value={form.company}
               onChange={(e) =>
                 setForm((prev) => ({ ...prev, company: e.target.value }))
@@ -207,31 +204,29 @@ function Contact() {
         </Grid>
         <Grid
           container
-          item
-          xs={12}
-          gap={1}
-          sx={{ flexDirection: { xs: "column", sm: "row" } }}
+          size={12}
+          sx={{ flexDirection: { xs: "column", sm: "row" }, gap: 1 }}
         >
-          <Grid item xs>
+          <Grid size="grow">
             <TextField
               required
               error={error && !form.email}
               label="Email"
               sx={{ width: "100%" }}
-              inputProps={{ maxLength: 64 }}
+              slotProps={{ htmlInput: { maxLength: 64 } }}
               value={form.email}
               onChange={(e) =>
                 setForm((prev) => ({ ...prev, email: e.target.value }))
               }
             />
           </Grid>
-          <Grid item xs>
+          <Grid size="grow">
             <TextField
               required
               error={error && !form.phone}
               label="Phone"
               sx={{ width: "100%" }}
-              inputProps={{ maxLength: 30 }}
+              slotProps={{ htmlInput: { maxLength: 30 } }}
               value={form.phone}
               onChange={(e) =>
                 setForm((prev) => ({ ...prev, phone: e.target.value }))
@@ -239,14 +234,14 @@ function Contact() {
             />
           </Grid>
         </Grid>
-        <Grid item xs={12}>
+        <Grid size={12}>
           <TextField
             label="Message"
             sx={{ width: "100%" }}
             minRows={4}
             maxRows={4}
             multiline
-            inputProps={{ maxLength: 500 }}
+            slotProps={{ htmlInput: { maxLength: 500 } }}
             value={form.message}
             onChange={(e) =>
               setForm((prev) => ({ ...prev, message: e.target.value }))

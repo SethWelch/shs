@@ -88,35 +88,35 @@ function Home() {
       >
         <Box>
           <SectionHeader title="Our Services" sx={{ marginBottom: 4 }} />
-          <Grid container sx={{ justifyContent: "center" }} gap={2}>
-            <Grid item sx={{ m: 0, position: "relative" }}>
+          <Grid container sx={{ justifyContent: "center", gap: 2 }}>
+            <Grid sx={{ m: 0, position: "relative" }}>
               <ServiceCard
                 variant="light"
                 title="CMS Promoting Interoperability Compliance"
                 body="Assistance with meeting CMS requirements for electronic health records and promoting interoperability to enhance patient care."
               />
             </Grid>
-            <Grid item sx={{ m: 0, position: "relative" }}>
+            <Grid sx={{ m: 0, position: "relative" }}>
               <ServiceCard
                 variant="medium"
                 title="Security & Privacy Risk Assessments"
                 body="Evaluating potential risks and vulnerabilities to the confidentiality, integrity, and availability of electronic protected health information."
               />
             </Grid>
-            <Grid item sx={{ m: 0, position: "relative" }}>
+            <Grid sx={{ m: 0, position: "relative" }}>
               <ServiceCard
                 title="SAFER Guide Facilitation and Completion"
                 body="Guiding healthcare organizations through SAFER Guides to ensure the safe and secure use of electronic health records."
               />
             </Grid>
-            <Grid item sx={{ m: 0, position: "relative" }}>
+            <Grid sx={{ m: 0, position: "relative" }}>
               <ServiceCard
                 variant="medium"
                 title="HIPAA Compliance Assessments"
                 body="Comprehensive assessments to ensure compliance with the Health Insurance Portability and Accountability Act regulations."
               />
             </Grid>
-            <Grid item sx={{ m: 0, position: "relative" }}>
+            <Grid sx={{ m: 0, position: "relative" }}>
               <ServiceCard
                 variant="light"
                 title="CARF Assessments"
@@ -168,22 +168,22 @@ function Home() {
         }}
       >
         <SectionHeader title="The Team" sx={{ marginBottom: 4 }} />
-        <Grid container sx={{ justifyContent: "center" }} gap={2}>
-          <Grid item sx={{ m: 0, position: "relative" }}>
+        <Grid container sx={{ justifyContent: "center", gap: 2 }}>
+          <Grid sx={{ m: 0, position: "relative" }}>
             <ProfileCard
               name="Sheryl Clark"
               title="President/CEO"
               image={sherylProfile}
             />
           </Grid>
-          <Grid item sx={{ m: 0, position: "relative" }}>
+          <Grid sx={{ m: 0, position: "relative" }}>
             <ProfileCard
               name="Katherine Uhling"
               title="Chief People Officer"
               image={katherineProfile}
             />
           </Grid>
-          <Grid item sx={{ m: 0, position: "relative" }}>
+          <Grid sx={{ m: 0, position: "relative" }}>
             <ProfileCard
               name="John DeDonder"
               subName="BSCS MSIS"
@@ -191,7 +191,7 @@ function Home() {
               image={johnProfile}
             />
           </Grid>
-          <Grid item sx={{ m: 0, position: "relative" }}>
+          <Grid sx={{ m: 0, position: "relative" }}>
             <ProfileCard
               name="Seth Welch"
               title="Web Developer"
@@ -228,7 +228,8 @@ function Home() {
             onClick={() =>
               window.open(
                 "https://www.linkedin.com/company/strategic-healthcare-solutions-llc/",
-                "_blank"
+                "_blank",
+                "noopener,noreferrer"
               )
             }
           >
