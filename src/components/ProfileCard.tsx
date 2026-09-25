@@ -1,103 +1,55 @@
-import { Box } from "@mui/material";
-import PersonIcon from "@mui/icons-material/Person";
+import { Avatar, Box, Typography } from "@mui/material";
+import { colors } from "../theme";
+import type { TeamMember } from "../data/content";
 
-type ProfileCardProps = {
-  name: string;
-  subName?: string;
-  title?: string;
-  image?: string;
-};
+function initials(name: string) {
+  return name
+    .split(" ")
+    .map((p) => p[0])
+    .join("")
+    .slice(0, 2);
+}
 
-function ProfileCard({ name, subName, title, image }: ProfileCardProps) {
+function ProfileCard({ name, title, credentials, image }: TeamMember) {
   return (
     <Box
       sx={{
-        display: "flex",
-        flexDirection: "column",
-        justifyContent: "center",
-        alignItems: "center",
-        background: "#07355b",
-        padding: "16px 24px",
-        boxShadow: "5px 5px 5px grey",
-        minWidth: 300,
-        minHeight: 325,
+        height: "100%",
+        textAlign: "center",
+        p: { xs: 2, sm: 3.5 },
+        borderRadius: 4,
+        bgcolor: "#fff",
+        border: `1px solid ${colors.line}`,
       }}
     >
-      <Box
-        id="image-container"
+      <Avatar
+        src={image}
+        alt={name}
         sx={{
-          background: "lightBlue",
-          borderRadius: 40,
-          display: "flex",
-          width: "fit-content",
-          mb: 2,
+          width: { xs: 96, sm: 136 },
+          height: { xs: 96, sm: 136 },
+          mx: "auto",
+          mb: 2.5,
+          bgcolor: colors.tealSoft,
+          color: colors.tealDark,
+          fontSize: 40,
+          fontWeight: 700,
+          boxShadow: `0 0 0 6px #fff, 0 0 0 7px ${colors.line}`,
         }}
       >
-        {image ? (
-          <img
-            style={{
-              width: "100%",
-              maxWidth: 200,
-              borderTopLeftRadius: "50% 50%",
-              borderTopRightRadius: "50% 50%",
-              borderBottomRightRadius: "50% 50%",
-              borderBottomLeftRadius: "50% 50%",
-            }}
-            src={`${image}`}
-            alt="placeholder"
-          />
-        ) : (
-          <Box
-            sx={{
-              height: 200,
-              width: 200,
-              fontSize: 120,
-              color: "midnightblue",
-            }}
-          >
-            <PersonIcon sx={{ fontSize: 200 }} />
-          </Box>
-        )}
-      </Box>
-      <Box>
-        <label
-          style={{
-            width: "100%",
-            display: "block",
-            fontSize: 20,
-            fontWeight: 600,
-            color: "white",
-            textWrap: "nowrap",
-          }}
-        >
-          {name}
-        </label>
-        {subName && (
-          <label
-            style={{
-              width: "100%",
-              display: "block",
-              fontSize: 16,
-              fontWeight: 600,
-              color: "white",
-              textWrap: "nowrap",
-            }}
-          >
-            {subName}
-          </label>
-        )}
-
-        <label
-          style={{
-            width: "100%",
-            display: "block",
-            color: "white",
-            textWrap: "nowrap",
-          }}
-        >
-          {title ? title : "Pending"}
-        </label>
-      </Box>
+        {initials(name)}
+      </Avatar>
+      <Typography variant="h3" component="h3">
+        {name}
+      </Typography>
+      {credentials && (
+        <Typography sx={{ fontSize: "0.8rem", fontWeight: 600, color: colors.tealDark, mt: 0.5, letterSpacing: "0.04em" }}>
+          {credentials}
+        </Typography>
+      )}
+      <Typography variant="body2" sx={{ mt: 0.5, color: colors.muted }}>
+        {title}
+      </Typography>
     </Box>
   );
 }

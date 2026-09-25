@@ -1,71 +1,62 @@
 import { Box, Typography } from "@mui/material";
+import { colors } from "../theme";
+import type { Service } from "../data/content";
 
-type Props = {
-  title: string;
-  body: string;
-  backgroundColor?: string;
-  variant?: "light" | "medium" | "dark";
-};
-
-function ServiceCard({ title, body, variant = "dark" }: Props) {
-  const getVariant = () => {
-    if (variant === "light") {
-      return {
-        backgroundColor: "#2c6fa7",
-        color: "white",
-      };
-    } else if (variant === "medium") {
-      return {
-        backgroundColor: "#07355b",
-        color: "white",
-      };
-    } else {
-      return {
-        backgroundColor: "#041933",
-        color: "white",
-      };
-    }
-  };
-
+function ServiceCard({ title, tag, body, icon: Icon }: Service) {
   return (
     <Box
+      component="article"
       sx={{
+        height: "100%",
+        p: { xs: 3, md: 3.5 },
+        borderRadius: 4,
+        border: `1px solid ${colors.line}`,
+        bgcolor: "#fff",
         display: "flex",
         flexDirection: "column",
-        maxWidth: { xs: "100%", sm: "300px", md: "300px" },
-        borderRadius: 0,
-        border: "1px solid",
-        boxShadow: "5px 5px 5px grey",
-        overflow: "hidden",
-        p: 1,
-        minHeight: 300,
-        height: "100%",
-        ...getVariant(),
+        transition: "transform .2s ease, box-shadow .2s ease, border-color .2s ease",
+        "&:hover": {
+          transform: "translateY(-3px)",
+          borderColor: "transparent",
+          boxShadow: "0 18px 40px -18px rgba(11,37,69,0.28)",
+        },
       }}
     >
-      <Typography
-        sx={{
-          textAlign: "center",
-          fontWeight: "bold",
-          fontFamily: "Raleway",
-          fontSize: "1.2rem",
-          p: "16px 8px",
-          minHeight: 100,
-          display: "flex",
-          alignItems: "center",
-          justifyContent: "center",
-        }}
-      >
+      <Box sx={{ display: "flex", alignItems: "center", justifyContent: "space-between", mb: 3 }}>
+        <Box
+          sx={{
+            width: 48,
+            height: 48,
+            borderRadius: 3,
+            display: "grid",
+            placeItems: "center",
+            bgcolor: colors.tealSoft,
+            color: colors.tealDark,
+          }}
+        >
+          <Icon />
+        </Box>
+        <Typography
+          component="span"
+          sx={{
+            fontSize: "0.75rem",
+            fontWeight: 600,
+            letterSpacing: "0.06em",
+            textTransform: "uppercase",
+            color: colors.muted,
+            border: `1px solid ${colors.line}`,
+            borderRadius: 99,
+            px: 1.25,
+            py: 0.25,
+          }}
+        >
+          {tag}
+        </Typography>
+      </Box>
+      <Typography variant="h3" component="h3">
         {title}
       </Typography>
-      <Box sx={{ borderBottom: "1px solid white", mx: 2 }} />
-      <Typography
-        sx={{
-          textAlign: "left",
-          fontSize: "1rem",
-          p: "16px 16px 0 16px",
-        }}
-      >
+      <Typography variant="body2" sx={{ mt: 1.5 }}>
         {body}
       </Typography>
     </Box>

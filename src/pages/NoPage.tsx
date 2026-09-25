@@ -1,19 +1,34 @@
-import { Box } from "@mui/material";
+import { Box, Button, Typography } from "@mui/material";
+import { Link as RouterLink } from "react-router-dom";
+import { colors } from "../theme";
 
 function NoPage() {
   return (
     <Box
       sx={{
+        minHeight: "60vh",
         display: "flex",
-        height: "calc(100vh - 64px)",
-        width: "100%",
-        justifyContent: "center",
-        alignItems: "center",
         flexDirection: "column",
+        alignItems: "center",
+        justifyContent: "center",
+        textAlign: "center",
+        px: 3,
+        py: 10,
+        bgcolor: colors.canvas,
       }}
     >
-      <p style={{ fontSize: 28, fontWeight: 800, margin: 0 }}>404</p>
-      <p style={{ fontSize: 18, fontWeight: 600 }}>Page not found</p>
+      <Typography variant="overline" component="p">
+        Error 404
+      </Typography>
+      <Typography variant="h2" component="h1" sx={{ mt: 1 }}>
+        Page not found
+      </Typography>
+      <Typography sx={{ mt: 2, maxWidth: 440 }}>
+        The page you're looking for doesn't exist or has moved.
+      </Typography>
+      <Button component={RouterLink} to="/" variant="contained" size="large" sx={{ mt: 4 }}>
+        Back to home
+      </Button>
     </Box>
   );
 }
