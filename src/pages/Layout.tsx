@@ -1,26 +1,30 @@
-import { Box } from "@mui/material";
-import DrawerAppBar from "../DrawerAppBar";
-import { Outlet } from "react-router-dom";
-import sky from "../assets/images/sky.jpg";
+import { useEffect } from "react";
+import { Outlet, useLocation } from "react-router-dom";
+import SiteHeader from "../components/SiteHeader";
+import SiteFooter from "../components/SiteFooter";
 
 function Layout() {
+  const { pathname, hash } = useLocation();
+
+  useEffect(() => {
+    if (hash) {
+      const el = document.getElementById(hash.slice(1));
+      if (el) {
+        el.scrollIntoView({ behavior: "smooth" });
+        return;
+      }
+    }
+    window.scrollTo(0, 0);
+  }, [pathname, hash]);
+
   return (
-    <Box
-      sx={{
-        backgroundImage: `url(${sky})`,
-        backgroundSize: "stretch",
-        overflow: "hidden",
-      }}
-    >
-      <DrawerAppBar />
-      <Box
-        sx={{
-          mt: "60px",
-        }}
-      >
+    <div className="site" style={{ display: "flex", flexDirection: "column", minHeight: "100vh" }}>
+      <SiteHeader />
+      <main style={{ flex: 1, display: "flex", flexDirection: "column" }}>
         <Outlet />
-      </Box>
-    </Box>
+      </main>
+      <SiteFooter />
+    </div>
   );
 }
 

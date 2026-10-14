@@ -1,243 +1,253 @@
-import { Box, Grid, IconButton, Typography } from "@mui/material";
-import office from "../assets/images/office.jpg";
-import office2 from "../assets/images/office-extended.png";
-import katherineProfile from "../assets/images/katherine-profile.png";
-import sethProfile from "../assets/images/seth-profile.png";
-import sherylProfile from "../assets/images/sheryl-profile.png";
-import johnProfile from "../assets/images/john-profile.png";
+import { Fragment } from "react";
+import { Link } from "react-router-dom";
+import heroPhoto from "../assets/images/sheryl-hero.jpg";
+import sbaLogo from "../assets/images/sba-logo.png";
+import { ArrowIcon, CalendarIcon } from "../components/Icons";
+import {
+  CAGE_CODE,
+  NAICS_SUMMARY,
+  UEI,
+  caseStudy,
+  certifications,
+  naicsCodes,
+  outcomes,
+  pillars,
+  services,
+  team,
+} from "../data/content";
 
-import SectionHeader from "../components/SectionHeader";
-import ServiceCard from "../components/ServiceCard";
-import LinkedInIcon from "@mui/icons-material/LinkedIn";
-import ProfileCard from "../components/ProfileCard";
-
-function Home() {
+function Hero() {
   return (
-    <>
-      <Box
-        sx={{
-          display: "flex",
-          flexDirection: { xs: "column", sm: "column", md: "row" },
-          alignItems: "stretch",
-          minHeight: { xs: 300, sm: 300, md: 600 },
-          backgroundImage: { xs: "unset", sm: "unset", md: `url(${office2})` },
-          backgroundSize: "cover",
-          backgroundRepeat: "no-repeat",
-          backgroundPosition: "center",
-        }}
-      >
-        <Box
-          sx={{
-            display: "flex",
-            flexDirection: "column",
-            justifyContent: "center",
-            px: { xs: 2, sm: 6 },
-            height: "auto",
-            maxWidth: 700,
-            minHeight: { xs: 300, sm: 300, md: 600 },
-            background:
-              "linear-gradient(to right, rgba(248,249,250,1) 40%,rgba(248,249,250,.65) 80%, rgba(248,249,250,0) 100%)",
-          }}
-        >
-          <Typography
-            sx={{
-              textAlign: "left",
-              fontWeight: "bolder",
-              fontSize: { xs: "2rem", sm: "3.5rem" },
-              fontFamily: "Raleway",
-              lineHeight: "1.2",
-              color: "navy",
-              textShadow: "#ffffff 4px 2px 10px",
-            }}
-          >
-            Compliance and Security Expertise
-          </Typography>
-          <Typography
-            variant="h5"
-            sx={{
-              textAlign: "left",
-              mt: 2,
-              color: "black",
-              width: "80%",
-              textShadow: "#ffffff 4px 2px 10px",
-            }}
-          >
-            If you think compliance experts or security officers are expensive,
-            wait until you see what amateurs cost.
-          </Typography>
-        </Box>
-        <Box sx={{ display: { xs: "block", sm: "block", md: "none" } }}>
-          <img
-            style={{
-              width: "100%",
-              maxWidth: 800,
-            }}
-            src={`${office}`}
-            alt="placeholder"
-          />
-        </Box>
-      </Box>
-      <Box
-        sx={{
-          display: "flex",
-          justifyContent: "center",
-          py: { xs: 4, sm: 8 },
-          background: "#f8f9fa",
-          borderBottom: "1px solid lightgray",
-        }}
-      >
-        <Box>
-          <SectionHeader title="Our Services" sx={{ marginBottom: 4 }} />
-          <Grid container sx={{ justifyContent: "center" }} gap={2}>
-            <Grid item sx={{ m: 0, position: "relative" }}>
-              <ServiceCard
-                variant="light"
-                title="CMS Promoting Interoperability Compliance"
-                body="Assistance with meeting CMS requirements for electronic health records and promoting interoperability to enhance patient care."
-              />
-            </Grid>
-            <Grid item sx={{ m: 0, position: "relative" }}>
-              <ServiceCard
-                variant="medium"
-                title="Security & Privacy Risk Assessments"
-                body="Evaluating potential risks and vulnerabilities to the confidentiality, integrity, and availability of electronic protected health information."
-              />
-            </Grid>
-            <Grid item sx={{ m: 0, position: "relative" }}>
-              <ServiceCard
-                title="SAFER Guide Facilitation and Completion"
-                body="Guiding healthcare organizations through SAFER Guides to ensure the safe and secure use of electronic health records."
-              />
-            </Grid>
-            <Grid item sx={{ m: 0, position: "relative" }}>
-              <ServiceCard
-                variant="medium"
-                title="HIPAA Compliance Assessments"
-                body="Comprehensive assessments to ensure compliance with the Health Insurance Portability and Accountability Act regulations."
-              />
-            </Grid>
-            <Grid item sx={{ m: 0, position: "relative" }}>
-              <ServiceCard
-                variant="light"
-                title="CARF Assessments"
-                body="Specialized assistance with Commission on Accreditation of Rehabilitation Facilities (CARF) standards for quality and results."
-              />
-            </Grid>
-          </Grid>
-        </Box>
-      </Box>
-      <Box
-        sx={{
-          width: "100%",
-          display: "flex",
-          flexDirection: "column",
-          justifyContent: "center",
-          alignItems: "center",
-          background: "#f8f9fa",
-          borderBottom: "1px solid lightgray",
-          py: 4,
-          px: 2,
-          gap: 2,
-        }}
-      >
-        <SectionHeader
-          title="About Us"
-          sx={{ textAlign: { sm: "center", md: "center", lg: "left" } }}
-        />
-        <Typography
-          variant="h6"
-          sx={{ textAlign: "left", fontSize: "1.25rem", maxWidth: "800px" }}
-        >
-          Strategic Healthcare Solutions employs a team of regulatory and
-          cybersecurity experts that assist hospitals and health systems across
-          the country with compliance. This dedicated team will perform
-          assessments, identify gaps and/or vulnerabilities, generate executive
-          dashboards, and project manage issues to closure. Let us tell you what
-          vulnerabilities should be keeping your leadership up at night and how
-          to mitigate those risks!
-        </Typography>
-      </Box>
-      <Box
-        sx={{
-          display: "flex",
-          justifyContent: "center",
-          flexDirection: "column",
-          py: 8,
-          background: "#f8f9fa",
-          borderBottom: "1px solid lightgray",
-        }}
-      >
-        <SectionHeader title="The Team" sx={{ marginBottom: 4 }} />
-        <Grid container sx={{ justifyContent: "center" }} gap={2}>
-          <Grid item sx={{ m: 0, position: "relative" }}>
-            <ProfileCard
-              name="Sheryl Clark"
-              title="President/CEO"
-              image={sherylProfile}
-            />
-          </Grid>
-          <Grid item sx={{ m: 0, position: "relative" }}>
-            <ProfileCard
-              name="Katherine Uhling"
-              title="Chief People Officer"
-              image={katherineProfile}
-            />
-          </Grid>
-          <Grid item sx={{ m: 0, position: "relative" }}>
-            <ProfileCard
-              name="John DeDonder"
-              subName="BSCS MSIS"
-              title="Director of Public Safety Programs"
-              image={johnProfile}
-            />
-          </Grid>
-          <Grid item sx={{ m: 0, position: "relative" }}>
-            <ProfileCard
-              name="Seth Welch"
-              title="Web Developer"
-              image={sethProfile}
-            />
-          </Grid>
-        </Grid>
-      </Box>
-      <Box sx={{ py: { xs: 4, sm: 8 } }}>
-        <SectionHeader title="Insights" sx={{ marginBottom: 2 }} />
-        <Typography sx={{ fontSize: "1.25rem" }}>
-          Transform data into actionable insights with our comprehensive
-          executive dashboards...
-        </Typography>
-      </Box>
-      <Box
-        sx={{
-          display: "flex",
-          height: "60px",
-          background: "black",
-          alignItems: "center",
-          justifyContent: "space-between",
-          boxShadow: 2,
-          borderTop: "1px solid lightgray",
-          px: 4,
-        }}
-      >
-        <Typography sx={{ color: "white", fontSize: 18 }}>
-          ©2024 Strategic Healthcare Solutions
-        </Typography>
-        <Box>
-          <IconButton
-            aria-label="linkedin"
-            onClick={() =>
-              window.open(
-                "https://www.linkedin.com/company/strategic-healthcare-solutions-llc/",
-                "_blank"
-              )
-            }
-          >
-            <LinkedInIcon sx={{ color: "white", height: 36, width: 36 }} />
-          </IconButton>
-        </Box>
-      </Box>
-    </>
+    <section className="hero">
+      <figure className="hero-photo">
+        <img src={heroPhoto} alt="Sheryl Clark, President and CEO of Strategic Healthcare Solutions" />
+        <figcaption>
+          <b>Sheryl Clark</b>President / CEO
+        </figcaption>
+      </figure>
+      <div className="wrap hero-inner">
+        <div>
+          <p className="eyebrow">Strategic Healthcare Solutions, LLC</p>
+          <h1>
+            Transforming <span className="u">Compliance</span> into a Strategic Advantage<sup>™</sup>
+          </h1>
+          <p className="lede">
+            Healthcare consulting solutions that strengthen compliance, optimize clinical operations,
+            reduce risk, and improve financial performance.
+          </p>
+          <div className="actions">
+            <Link className="btn btn-gold" to="/#services">
+              Explore Our Services <ArrowIcon />
+            </Link>
+            <Link className="btn btn-ghost" to="/contact">
+              <CalendarIcon /> Schedule a Consultation
+            </Link>
+          </div>
+        </div>
+        <ul className="pillars" aria-label="What we bring">
+          {pillars.map((p) => (
+            <li key={p}>{p}</li>
+          ))}
+        </ul>
+      </div>
+    </section>
   );
 }
 
-export default Home;
+function SectionHead({ eyebrow, title }: { eyebrow: string; title: string }) {
+  return (
+    <div className="sec-head">
+      <div>
+        <p className="eyebrow">{eyebrow}</p>
+        <h2>{title}</h2>
+        <span className="rule" />
+      </div>
+    </div>
+  );
+}
+
+function Services() {
+  return (
+    <section className="services" id="services">
+      <div className="wrap">
+        <SectionHead eyebrow="Our Services" title="Healthcare consulting solutions" />
+        <div className="svc-grid">
+          {services.map(({ title, body, icon: Icon, image, alt }) => (
+            <article className="svc" key={title}>
+              <div className="svc-body">
+                <div className="svc-head">
+                  <div className="icon-disc">
+                    <Icon />
+                  </div>
+                  <h3>{title}</h3>
+                </div>
+                <p>{body}</p>
+              </div>
+              <figure className="svc-photo">
+                <img src={image} alt={alt} loading="lazy" />
+              </figure>
+            </article>
+          ))}
+        </div>
+      </div>
+    </section>
+  );
+}
+
+function Government() {
+  return (
+    <section className="gov" id="government">
+      <div className="wrap">
+        <SectionHead eyebrow="SBA Certified" title="Government Contracting" />
+        <div className="gov-grid">
+          {certifications.map((c) => (
+            <div className="tile" key={c.code}>
+              <div className="sba">
+                <img src={sbaLogo} alt="SBA" />
+                <div className="code">{c.code}</div>
+              </div>
+              <div>
+                <div className="full">{c.name}</div>
+                <div className="cert">CERTIFIED</div>
+              </div>
+            </div>
+          ))}
+        </div>
+        <div className="naics-row">
+          <div className="reg">
+            <div className="label">NAICS Codes</div>
+            <div className="naics">
+              {naicsCodes.map((n) => (
+                <span key={n}>{n}</span>
+              ))}
+            </div>
+            <div className="naics-note">{NAICS_SUMMARY}</div>
+          </div>
+          <div className="reg">
+            <div className="label">CAGE Code</div>
+            <div className="v">{CAGE_CODE}</div>
+          </div>
+          <div className="reg">
+            <div className="label">UEI</div>
+            <div className="v">{UEI}</div>
+          </div>
+        </div>
+      </div>
+    </section>
+  );
+}
+
+function Results() {
+  return (
+    <section className="results" id="results">
+      <div className="wrap">
+        <div className="results-grid">
+          <div>
+            <h2>
+              Real expertise.
+              <br />
+              <span className="gold-text">Real results.</span>
+            </h2>
+            <span className="rule" />
+            <p className="intro">
+              We partner with hospitals, health systems, government agencies, and healthcare technology
+              organizations to deliver measurable clinical, operational, and financial improvements.
+            </p>
+          </div>
+          <div className="case">
+            <p className="eyebrow">{caseStudy.area}</p>
+            <div className="stat">{caseStudy.stat}</div>
+            <div className="stat-label">{caseStudy.label}</div>
+            <p>{caseStudy.body}</p>
+          </div>
+        </div>
+        <div className="outcomes">
+          {outcomes.map(({ title, body, icon: Icon }) => (
+            <div className="outcome" key={title}>
+              <div className="ring">
+                <Icon />
+              </div>
+              <h3>{title}</h3>
+              <p>{body}</p>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+  );
+}
+
+function About() {
+  return (
+    <section className="about" id="about">
+      <div className="wrap about-grid">
+        <div>
+          <p className="eyebrow">About Us</p>
+          <h2>Let us tell you what vulnerabilities should be keeping your leadership up at night</h2>
+          <span className="rule" />
+        </div>
+        <p className="copy">
+          Strategic Healthcare Solutions employs a team of regulatory and cybersecurity experts that assist
+          hospitals and health systems across the country with compliance. This dedicated team will perform
+          assessments, identify gaps and/or vulnerabilities, generate executive dashboards, and project manage
+          issues to closure. Let us tell you what vulnerabilities should be keeping your leadership up at night
+          and how to mitigate those risks!
+        </p>
+      </div>
+    </section>
+  );
+}
+
+function Team() {
+  return (
+    <section className="team" id="team">
+      <div className="wrap">
+        <SectionHead eyebrow="Our People" title="The Team" />
+        <div className="team-grid">
+          {team.map((m) => (
+            <div className="member" key={m.name}>
+              <div className="ph">
+                <img src={m.image} alt={m.name} />
+              </div>
+              <h3>{m.name}</h3>
+              {m.credentials && <div className="cr">{m.credentials}</div>}
+              <div className="t">{m.title}</div>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+  );
+}
+
+function Insights() {
+  return (
+    <section className="insights" id="insights">
+      <div className="wrap insights-row">
+        <div>
+          <p className="eyebrow">Insights</p>
+          <h2>Executive dashboards</h2>
+          <span className="rule" />
+          <p>Transform data into actionable insights with our comprehensive executive dashboards.</p>
+        </div>
+        <Link className="btn btn-navy" to="/contact">
+          <CalendarIcon /> Schedule a Consultation
+        </Link>
+      </div>
+    </section>
+  );
+}
+
+export default function Home() {
+  return (
+    <Fragment>
+      <Hero />
+      <Services />
+      <Government />
+      <Results />
+      <About />
+      <Team />
+      <Insights />
+    </Fragment>
+  );
+}

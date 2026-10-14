@@ -1,265 +1,249 @@
+import { useEffect, useState } from "react";
 import {
   Alert,
-  AlertProps,
+  type AlertProps,
   Box,
+  Button,
+  Container,
   Grid,
+  Link,
   Snackbar,
+  Stack,
   TextField,
   Typography,
 } from "@mui/material";
-import abstract from "../assets/images/abstract.jpg";
-import AlternateEmailIcon from "@mui/icons-material/AlternateEmail";
-import Button from "../components/Button";
-import _ from "lodash";
-
-import { useEffect, useState } from "react";
-
+import MailOutlineRoundedIcon from "@mui/icons-material/MailOutlineRounded";
+import CheckCircleRoundedIcon from "@mui/icons-material/CheckCircleRounded";
+import SendRoundedIcon from "@mui/icons-material/SendRounded";
 import emailjs from "@emailjs/browser";
-
 import email from "../email.json";
+import { CONTACT_EMAIL } from "../data/content";
+import { colors } from "../theme";
 
 const emptyAlert = { open: false, message: "", severity: "" };
+const emptyForm = { name: "", email: "", company: "", phone: "", message: "" };
+const EMAIL_RE = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+type Field = keyof typeof emptyForm;
 
 function Contact() {
   const [alert, setAlert] = useState(emptyAlert);
-
-  const [form, setForm] = useState({
-    name: "",
-    email: "",
-    company: "",
-    phone: "",
-    message: "",
-  });
-
+  const [form, setForm] = useState(emptyForm);
   const [error, setError] = useState(false);
+  const [sending, setSending] = useState(false);
 
   useEffect(() => emailjs.init(email.public), []);
 
-  const submitCheck = () => {
-    const { name, email, phone, message } = form;
+  const emailInvalid = !!form.email && !EMAIL_RE.test(form.email);
 
-    if (!name || !email || !phone || !message) {
+  const update = (field: Field) => (e: React.ChangeEvent<HTMLInputElement>) =>
+    setForm((prev) => ({ ...prev, [field]: e.target.value }));
+
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    const { name, email: address, phone, message } = form;
+    if (!name || !address || !phone || !message || emailInvalid) {
       setError(true);
-    } else {
-      setError(false);
-      handleSubmit();
+      return;
     }
-  };
-
-  const handleSubmit = async () => {
-    const serviceId = email.id;
-    const templateId = email.template;
-
+    setError(false);
+    setSending(true);
     try {
-      await emailjs.send(serviceId, templateId, {
-        name: form.name,
-        email: form.email,
-        company: form.company,
-        phone: form.phone,
-        message: form.message,
-      });
-      setAlert({
-        open: true,
-        message: "Email sent successfully",
-        severity: "success",
-      });
-    } catch (error) {
-      setAlert({
-        open: true,
-        message: "Email failed to send",
-        severity: "error",
-      });
-      console.log(error);
+      await emailjs.send(email.id, email.template, { ...form });
+      setAlert({ open: true, message: "Thanks — your message was sent. We'll be in touch soon.", severity: "success" });
+      setForm(emptyForm);
+    } catch (err) {
+      setAlert({ open: true, message: "Your message failed to send. Please try again or email us directly.", severity: "error" });
+      console.log(err);
+    } finally {
+      setSending(false);
     }
   };
 
   return (
-    <Box
-      sx={{
-        display: "flex",
-        flexDirection: "column",
-        alignItems: "center",
-        backgroundColor: "bisque",
-        height: "calc(100vh - 60px)",
-        backgroundImage: `url(${abstract})`,
-        backgroundSize: "cover",
-      }}
-    >
+    <Box sx={{ flex: 1, bgcolor: colors.canvas, py: { xs: 6, md: 10 } }}>
       <Snackbar
         anchorOrigin={{ vertical: "bottom", horizontal: "center" }}
         open={alert.open}
+        autoHideDuration={6000}
         onClose={() => setAlert(emptyAlert)}
       >
         <Alert
           onClose={() => setAlert(emptyAlert)}
           severity={alert.severity as AlertProps["severity"]}
           variant="filled"
-          sx={{
-            width: "100%",
-            background: alert.severity === "error" ? "darkred" : "navy",
-          }}
+          sx={{ width: "100%" }}
         >
           {alert.message}
         </Alert>
       </Snackbar>
-      <Grid
-        container
-        sx={{
-          border: "1px solid darkgrey",
-          background: "white",
-          boxShadow: 2,
-          padding: 2,
-          maxWidth: 800,
-          position: "absolute",
-          top: { xs: "60px", sm: "25%" },
-          height: { xs: "fit-content", sm: "auto" },
-        }}
-        gap={1}
-      >
-        <Typography
-          variant="h4"
+
+      <Container maxWidth="lg" sx={{ px: { xs: 2.5, sm: 4 } }}>
+        <Grid
+          container
           sx={{
-            fontFamily: "Raleway",
-            fontWeight: "bold",
-            width: "100%",
-            textAlign: "left",
+            borderRadius: 1.4,
+            overflow: "hidden",
+            bgcolor: "#fff",
+            border: `1px solid ${colors.line}`,
+            boxShadow: "0 30px 60px -40px rgba(11,37,69,0.35)",
           }}
         >
-          Contact Us
-        </Typography>
-
-        <Box>
-          <Box sx={{ display: "flex", alignItems: "center", gap: 1 }}>
-            <AlternateEmailIcon />
-            <Typography
-              sx={{
-                fontFamily: "Raleway",
-                width: "100%",
-                textAlign: "left",
-                fontSize: { xs: "1rem", sm: "1.2rem" },
-              }}
-            >
-              sheryl@strategichealthcaresolutions.org
-            </Typography>
-          </Box>
-        </Box>
-
-        <Box sx={{ width: "100%", display: "flex", my: 2 }}>
-          <Box
+          <Grid
+            size={{ xs: 12, md: 5 }}
             sx={{
-              borderBottom: "1px solid grey",
-              width: "100%",
-              height: "50%",
+              bgcolor: colors.navy,
+              color: "#fff",
+              p: { xs: 4, md: 6 },
+              backgroundImage: `radial-gradient(circle at 0% 100%, rgba(201,162,90,0.3), transparent 55%)`,
             }}
-          />
-          <Typography
-            variant="h5"
-            sx={{ fontFamily: "Raleway", fontWeight: "bold", px: 2 }}
           >
-            Or
-          </Typography>
-          <Box
-            sx={{
-              borderBottom: "1px solid grey",
-              width: "100%",
-              height: "50%",
-            }}
-          />
-        </Box>
+            <Typography variant="overline" component="p" sx={{ color: colors.goldLight }}>
+              Contact
+            </Typography>
+            <Typography variant="h2" component="h1" sx={{ color: "#fff", mt: 1 }}>
+              Let's talk about your compliance priorities
+            </Typography>
+            <Typography sx={{ color: "rgba(255,255,255,0.75)", mt: 2 }}>
+              Send us a note and a member of our team will follow up to learn about your organization.
+            </Typography>
 
-        <Typography
-          variant="h5"
-          sx={{ fontFamily: "Raleway", fontWeight: "bold" }}
-        >
-          Send Us A Message
-        </Typography>
-        <Grid
-          container
-          item
-          xs={12}
-          gap={1}
-          sx={{ flexDirection: { xs: "column", sm: "row" } }}
-        >
-          <Grid item xs>
-            <TextField
-              required
-              error={error && !form.name}
-              label="Name"
-              sx={{ width: "100%" }}
-              inputProps={{ maxLength: 64 }}
-              value={form.name}
-              onChange={(e) =>
-                setForm((prev) => ({ ...prev, name: e.target.value }))
-              }
-            />
+            <Stack spacing={1.75} sx={{ mt: 4 }}>
+              {[
+                "An initial conversation about your goals",
+                "A recommended assessment scope",
+                "Clear next steps and timeline",
+              ].map((t) => (
+                <Stack key={t} direction="row" spacing={1.5} sx={{ alignItems: "flex-start" }}>
+                  <CheckCircleRoundedIcon sx={{ color: colors.goldLight, fontSize: 20, mt: "3px" }} />
+                  <Typography sx={{ color: "rgba(255,255,255,0.88)", fontSize: "1rem" }}>{t}</Typography>
+                </Stack>
+              ))}
+            </Stack>
+
+            <Box sx={{ mt: 5, pt: 4, borderTop: "1px solid rgba(255,255,255,0.12)" }}>
+              <Typography sx={{ fontSize: "0.85rem", color: "rgba(255,255,255,0.55)", mb: 1 }}>
+                Prefer email?
+              </Typography>
+              <Link
+                href={`mailto:${CONTACT_EMAIL}`}
+                sx={{
+                  color: "#fff",
+                  display: "inline-flex",
+                  alignItems: "center",
+                  gap: 1,
+                  fontWeight: 600,
+                  wordBreak: "break-all",
+                  textDecorationColor: "rgba(255,255,255,0.4)",
+                }}
+              >
+                <MailOutlineRoundedIcon fontSize="small" />
+                {CONTACT_EMAIL}
+              </Link>
+            </Box>
           </Grid>
-          <Grid item xs>
-            <TextField
-              label="Company"
-              sx={{ width: "100%" }}
-              inputProps={{ maxLength: 64 }}
-              value={form.company}
-              onChange={(e) =>
-                setForm((prev) => ({ ...prev, company: e.target.value }))
-              }
-            />
+
+          <Grid size={{ xs: 12, md: 7 }} sx={{ p: { xs: 3, sm: 4, md: 6 } }}>
+            <Typography variant="h4" component="h2" sx={{ fontSize: "1.5rem", color: colors.ink }}>
+              Send us a message
+            </Typography>
+            <Typography variant="body2" sx={{ mt: 0.5, mb: 4, color: colors.muted }}>
+              Fields marked * are required.
+            </Typography>
+
+            <Box component="form" noValidate onSubmit={handleSubmit}>
+              <Grid container spacing={2}>
+                <Grid size={{ xs: 12, sm: 6 }}>
+                  <TextField
+                    required
+                    fullWidth
+                    label="Name"
+                    autoComplete="name"
+                    error={error && !form.name}
+                    slotProps={{ htmlInput: { maxLength: 64 } }}
+                    value={form.name}
+                    onChange={update("name")}
+                  />
+                </Grid>
+                <Grid size={{ xs: 12, sm: 6 }}>
+                  <TextField
+                    fullWidth
+                    label="Organization"
+                    autoComplete="organization"
+                    slotProps={{ htmlInput: { maxLength: 64 } }}
+                    value={form.company}
+                    onChange={update("company")}
+                  />
+                </Grid>
+                <Grid size={{ xs: 12, sm: 6 }}>
+                  <TextField
+                    required
+                    fullWidth
+                    type="email"
+                    label="Email"
+                    autoComplete="email"
+                    error={(error && !form.email) || (error && emailInvalid)}
+                    helperText={error && emailInvalid ? "Enter a valid email address" : undefined}
+                    slotProps={{ htmlInput: { maxLength: 64 } }}
+                    value={form.email}
+                    onChange={update("email")}
+                  />
+                </Grid>
+                <Grid size={{ xs: 12, sm: 6 }}>
+                  <TextField
+                    required
+                    fullWidth
+                    type="tel"
+                    label="Phone"
+                    autoComplete="tel"
+                    error={error && !form.phone}
+                    slotProps={{ htmlInput: { maxLength: 30 } }}
+                    value={form.phone}
+                    onChange={update("phone")}
+                  />
+                </Grid>
+                <Grid size={12}>
+                  <TextField
+                    required
+                    fullWidth
+                    multiline
+                    minRows={5}
+                    maxRows={8}
+                    label="How can we help?"
+                    error={error && !form.message}
+                    helperText={`${form.message.length}/500`}
+                    slotProps={{
+                      htmlInput: { maxLength: 500 },
+                      formHelperText: { sx: { textAlign: "right", mx: 0 } },
+                    }}
+                    value={form.message}
+                    onChange={update("message")}
+                  />
+                </Grid>
+              </Grid>
+              <Stack
+                direction={{ xs: "column-reverse", sm: "row" }}
+                spacing={2}
+                sx={{ mt: 3, justifyContent: "space-between", alignItems: { sm: "center" } }}
+              >
+                <Typography variant="body2" sx={{ color: colors.muted, fontSize: "0.85rem" }}>
+                  Please don't include patient or other protected health information.
+                </Typography>
+                <Button
+                  type="submit"
+                  variant="contained"
+                  size="large"
+                  loading={sending}
+                  endIcon={<SendRoundedIcon />}
+                  sx={{ flexShrink: 0 }}
+                >
+                  Send message
+                </Button>
+              </Stack>
+            </Box>
           </Grid>
         </Grid>
-        <Grid
-          container
-          item
-          xs={12}
-          gap={1}
-          sx={{ flexDirection: { xs: "column", sm: "row" } }}
-        >
-          <Grid item xs>
-            <TextField
-              required
-              error={error && !form.email}
-              label="Email"
-              sx={{ width: "100%" }}
-              inputProps={{ maxLength: 64 }}
-              value={form.email}
-              onChange={(e) =>
-                setForm((prev) => ({ ...prev, email: e.target.value }))
-              }
-            />
-          </Grid>
-          <Grid item xs>
-            <TextField
-              required
-              error={error && !form.phone}
-              label="Phone"
-              sx={{ width: "100%" }}
-              inputProps={{ maxLength: 30 }}
-              value={form.phone}
-              onChange={(e) =>
-                setForm((prev) => ({ ...prev, phone: e.target.value }))
-              }
-            />
-          </Grid>
-        </Grid>
-        <Grid item xs={12}>
-          <TextField
-            label="Message"
-            sx={{ width: "100%" }}
-            minRows={4}
-            maxRows={4}
-            multiline
-            inputProps={{ maxLength: 500 }}
-            value={form.message}
-            onChange={(e) =>
-              setForm((prev) => ({ ...prev, message: e.target.value }))
-            }
-            required
-            error={error && !form.message}
-          />
-          <Box sx={{ textAlign: "end" }}>{form.message.length || 0}/500</Box>
-        </Grid>
-        <Button sx={{ ml: "auto" }} onClick={submitCheck}>
-          Send
-        </Button>
-      </Grid>
+      </Container>
     </Box>
   );
 }
