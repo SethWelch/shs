@@ -29,7 +29,7 @@ export default function SiteHeader() {
           ))}
         </nav>
         <Link className="btn btn-gold" to="/contact">
-          Schedule a Consultation <ArrowIcon />
+          Contact Us<ArrowIcon />
         </Link>
         <button
           type="button"
@@ -54,7 +54,7 @@ export default function SiteHeader() {
             ))}
           </ul>
           <Link className="btn btn-gold" to="/contact" onClick={() => setOpen(false)}>
-            Schedule a Consultation <ArrowIcon />
+            Contact Us<ArrowIcon />
           </Link>
         </div>
       </nav>

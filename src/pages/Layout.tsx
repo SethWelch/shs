@@ -20,7 +20,7 @@ function Layout() {
   return (
     <div className="site" style={{ display: "flex", flexDirection: "column", minHeight: "100vh" }}>
       <SiteHeader />
-      <main style={{ flex: 1 }}>
+      <main style={{ flex: 1, display: "flex", flexDirection: "column" }}>
         <Outlet />
       </main>
       <SiteFooter />

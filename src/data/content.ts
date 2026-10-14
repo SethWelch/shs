@@ -23,7 +23,6 @@ export const navLinks: { label: string; to: string; hideMd?: boolean }[] = [
   { label: "Government Contracting", to: "/#government" },
   { label: "Case Studies", to: "/#results" },
   { label: "Insights", to: "/#insights" },
-  { label: "Contact", to: "/contact", hideMd: true },
 ];
 
 export const pillars = [

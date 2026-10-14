@@ -6,6 +6,7 @@ function NoPage() {
   return (
     <Box
       sx={{
+        flex: 1,
         minHeight: "60vh",
         display: "flex",
         flexDirection: "column",

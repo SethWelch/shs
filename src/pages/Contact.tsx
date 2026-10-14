@@ -61,7 +61,7 @@ function Contact() {
   };
 
   return (
-    <Box sx={{ bgcolor: colors.canvas, py: { xs: 6, md: 10 } }}>
+    <Box sx={{ flex: 1, bgcolor: colors.canvas, py: { xs: 6, md: 10 } }}>
       <Snackbar
         anchorOrigin={{ vertical: "bottom", horizontal: "center" }}
         open={alert.open}
