@@ -1,69 +1,54 @@
 import { alpha, createTheme } from "@mui/material/styles";
 
+// Shared with src/styles/site.css (the CSS custom properties there use the same values).
 export const colors = {
-  navy: "#0B2545",
-  navyDeep: "#071A33",
-  blue: "#13497B",
-  teal: "#0E9594",
-  tealDark: "#0B7A79",
-  tealSoft: "#E3F4F3",
+  navy: "#0B1F3F",
+  navyDeep: "#06142B",
+  gold: "#C9A25A",
+  goldDark: "#9C7A3A",
+  goldLight: "#E2C58C",
+  goldSoft: "#F6EFE1",
   ink: "#0F1B2D",
-  body: "#44546A",
-  muted: "#6B7A90",
-  line: "#E3E8EF",
-  canvas: "#F5F8FB",
+  body: "#46546A",
+  muted: "#6E7B8F",
+  line: "#E4E7EC",
+  canvas: "#F6F7F9",
   white: "#FFFFFF",
 };
 
-const headingFont = '"Plus Jakarta Sans Variable", "Inter Variable", system-ui, sans-serif';
-const bodyFont = '"Inter Variable", system-ui, -apple-system, "Segoe UI", sans-serif';
+export const serifFont = '"EB Garamond", Georgia, serif';
+export const sansFont = '"Source Sans 3 Variable", "Source Sans 3", system-ui, -apple-system, "Segoe UI", sans-serif';
 
 const theme = createTheme({
   palette: {
     primary: { main: colors.navy, dark: colors.navyDeep, contrastText: "#fff" },
-    secondary: { main: colors.teal, dark: colors.tealDark, contrastText: "#fff" },
+    secondary: { main: colors.gold, dark: colors.goldDark, contrastText: colors.navyDeep },
     text: { primary: colors.ink, secondary: colors.body },
     background: { default: colors.white, paper: colors.white },
     divider: colors.line,
     error: { main: "#B42318" },
-    success: { main: colors.tealDark },
+    success: { main: "#1E7F5C" },
   },
-  shape: { borderRadius: 12 },
+  shape: { borderRadius: 10 },
   typography: {
-    fontFamily: bodyFont,
-    h1: {
-      fontFamily: headingFont,
-      fontWeight: 800,
-      fontSize: "clamp(2.25rem, 1.4rem + 3.2vw, 3.75rem)",
-      lineHeight: 1.08,
-      letterSpacing: "-0.025em",
-      color: colors.ink,
-    },
+    fontFamily: sansFont,
+    h1: { fontFamily: serifFont, fontWeight: 700, lineHeight: 1.08, color: colors.ink },
     h2: {
-      fontFamily: headingFont,
-      fontWeight: 800,
-      fontSize: "clamp(1.75rem, 1.3rem + 1.6vw, 2.5rem)",
-      lineHeight: 1.15,
-      letterSpacing: "-0.02em",
-      color: colors.ink,
-    },
-    h3: {
-      fontFamily: headingFont,
+      fontFamily: serifFont,
       fontWeight: 700,
-      fontSize: "1.2rem",
-      lineHeight: 1.35,
-      letterSpacing: "-0.01em",
+      fontSize: "clamp(2rem, 1.4rem + 1.8vw, 3rem)",
+      lineHeight: 1.1,
       color: colors.ink,
     },
-    h4: { fontFamily: headingFont, fontWeight: 700 },
-    h5: { fontFamily: headingFont, fontWeight: 700 },
+    h3: { fontFamily: serifFont, fontWeight: 700 },
+    h4: { fontFamily: serifFont, fontWeight: 700 },
+    h5: { fontFamily: serifFont, fontWeight: 700 },
     overline: {
-      fontFamily: bodyFont,
       fontWeight: 600,
       fontSize: "0.8rem",
-      letterSpacing: "0.12em",
+      letterSpacing: "0.28em",
       lineHeight: 1.6,
-      color: colors.tealDark,
+      color: colors.gold,
     },
     body1: { fontSize: "1.0625rem", lineHeight: 1.7, color: colors.body },
     body2: { fontSize: "0.95rem", lineHeight: 1.65, color: colors.body },
@@ -72,36 +57,38 @@ const theme = createTheme({
   components: {
     MuiCssBaseline: {
       styleOverrides: {
-        html: { scrollBehavior: "smooth" },
         body: { backgroundColor: colors.white, WebkitFontSmoothing: "antialiased" },
-        "[id]": { scrollMarginTop: "88px" },
-        "::selection": { background: alpha(colors.teal, 0.2) },
-        "@media (prefers-reduced-motion: reduce)": {
-          html: { scrollBehavior: "auto" },
-          "*": { transition: "none !important", animation: "none !important" },
-        },
+        "::selection": { background: alpha(colors.gold, 0.25) },
       },
     },
     MuiButton: {
       defaultProps: { disableElevation: true },
       styleOverrides: {
-        root: { borderRadius: 10, padding: "10px 20px", fontSize: "0.975rem" },
-        sizeLarge: { padding: "13px 26px", fontSize: "1.025rem" },
-        outlined: { borderWidth: 1.5, "&:hover": { borderWidth: 1.5 } },
+        root: { borderRadius: 6, padding: "10px 20px", fontSize: "1rem" },
+        sizeLarge: { padding: "13px 26px", fontSize: "1.05rem" },
       },
+      variants: [
+        {
+          props: { variant: "contained", color: "primary" },
+          style: {
+            background: `linear-gradient(180deg, #17396B, ${colors.navy})`,
+            "&:hover": { background: colors.navyDeep },
+          },
+        },
+      ],
     },
     MuiOutlinedInput: {
       styleOverrides: {
         root: {
-          borderRadius: 10,
+          borderRadius: 8,
           backgroundColor: colors.white,
-          "&.Mui-focused .MuiOutlinedInput-notchedOutline": { borderColor: colors.teal },
+          "&.Mui-focused .MuiOutlinedInput-notchedOutline": { borderColor: colors.gold },
         },
         notchedOutline: { borderColor: colors.line },
       },
     },
     MuiInputLabel: {
-      styleOverrides: { root: { "&.Mui-focused": { color: colors.tealDark } } },
+      styleOverrides: { root: { "&.Mui-focused": { color: colors.goldDark } } },
     },
   },
 });

@@ -1,125 +1,63 @@
 import { useState } from "react";
-import {
-  AppBar,
-  Box,
-  Button,
-  Container,
-  Drawer,
-  IconButton,
-  List,
-  ListItemButton,
-  ListItemText,
-  Toolbar,
-} from "@mui/material";
-import MenuRoundedIcon from "@mui/icons-material/MenuRounded";
-import CloseRoundedIcon from "@mui/icons-material/CloseRounded";
-import { Link as RouterLink } from "react-router-dom";
-import logo from "../assets/images/logo.png";
-import { navLinks } from "../data/content";
-import { colors } from "../theme";
+import { Link, useLocation } from "react-router-dom";
+import logo from "../assets/images/shs-logo-header.png";
+import { COMPANY_NAME, navLinks } from "../data/content";
+import { ArrowIcon, CloseIcon, MenuIcon } from "./Icons";
 
 export default function SiteHeader() {
   const [open, setOpen] = useState(false);
+  const { pathname, hash } = useLocation();
+
+  const isActive = (to: string) =>
+    to === "/" ? pathname === "/" && !hash : to === `${pathname}${hash}` || to === pathname;
 
   return (
-    <AppBar
-      position="sticky"
-      elevation={0}
-      sx={{
-        bgcolor: colors.navy,
-        borderBottom: "1px solid rgba(255,255,255,0.08)",
-      }}
-    >
-      <Container maxWidth="lg" sx={{ px: { xs: 2, sm: 4 } }}>
-        <Toolbar disableGutters sx={{ minHeight: { xs: 64, md: 72 }, gap: 2 }}>
-          <Box
-            component={RouterLink}
-            to="/"
-            aria-label="Strategic Healthcare Solutions home"
-            sx={{ display: "flex", alignItems: "center", mr: "auto", minWidth: 0 }}
-          >
-            <Box
-              component="img"
-              src={logo}
-              alt="Strategic Healthcare Solutions"
-              sx={{ height: { xs: 24, sm: 30 }, width: "auto", maxWidth: "100%", filter: "brightness(1.35)" }}
-            />
-          </Box>
-
-          <Box component="nav" sx={{ display: { xs: "none", md: "flex" }, gap: 0.5 }}>
-            {navLinks.map((l) => (
-              <Button
-                key={l.hash}
-                component={RouterLink}
-                to={`/#${l.hash}`}
-                sx={{
-                  color: "rgba(255,255,255,0.82)",
-                  px: 1.75,
-                  "&:hover": { color: "#fff", bgcolor: "rgba(255,255,255,0.06)" },
-                }}
-              >
-                {l.label}
-              </Button>
-            ))}
-          </Box>
-
-          <Button
-            component={RouterLink}
-            to="/contact"
-            variant="contained"
-            color="secondary"
-            sx={{ display: { xs: "none", sm: "inline-flex" }, ml: { md: 1 } }}
-          >
-            Contact us
-          </Button>
-
-          <IconButton
-            aria-label="Open menu"
-            onClick={() => setOpen(true)}
-            sx={{ display: { md: "none" }, color: "#fff" }}
-          >
-            <MenuRoundedIcon />
-          </IconButton>
-        </Toolbar>
-      </Container>
-
-      <Drawer
-        anchor="right"
-        open={open}
-        onClose={() => setOpen(false)}
-        slotProps={{ paper: { sx: { width: 280, bgcolor: colors.navy, color: "#fff", p: 2 } } }}
-      >
-        <Box sx={{ display: "flex", justifyContent: "flex-end" }}>
-          <IconButton aria-label="Close menu" onClick={() => setOpen(false)} sx={{ color: "#fff" }}>
-            <CloseRoundedIcon />
-          </IconButton>
-        </Box>
-        <List>
+    <header className="site-header">
+      <div className="wrap nav">
+        <Link className="brand" to="/" aria-label={`${COMPANY_NAME} home`}>
+          <img className="logo" src={logo} alt={COMPANY_NAME} />
+        </Link>
+        <nav className="links" aria-label="Primary">
           {navLinks.map((l) => (
-            <ListItemButton
-              key={l.hash}
-              component={RouterLink}
-              to={`/#${l.hash}`}
-              onClick={() => setOpen(false)}
-              sx={{ borderRadius: 2 }}
+            <Link
+              key={l.to}
+              to={l.to}
+              className={[isActive(l.to) ? "active" : "", l.hideMd ? "hide-md" : ""].join(" ").trim()}
             >
-              <ListItemText primary={l.label} slotProps={{ primary: { sx: { fontWeight: 600 } } }} />
-            </ListItemButton>
+              {l.label}
+            </Link>
           ))}
-        </List>
-        <Button
-          component={RouterLink}
-          to="/contact"
-          onClick={() => setOpen(false)}
-          variant="contained"
-          color="secondary"
-          fullWidth
-          size="large"
-          sx={{ mt: 2 }}
+        </nav>
+        <Link className="btn btn-gold" to="/contact">
+          Schedule a Consultation <ArrowIcon />
+        </Link>
+        <button
+          type="button"
+          className="menu-btn"
+          aria-label={open ? "Close menu" : "Open menu"}
+          aria-expanded={open}
+          aria-controls="mobile-nav"
+          onClick={() => setOpen((o) => !o)}
         >
-          Contact us
-        </Button>
-      </Drawer>
-    </AppBar>
+          {open ? <CloseIcon /> : <MenuIcon />}
+        </button>
+      </div>
+      <nav id="mobile-nav" className={`mobile-nav${open ? " open" : ""}`} aria-label="Mobile">
+        <div className="wrap">
+          <ul>
+            {navLinks.map((l) => (
+              <li key={l.to}>
+                <Link to={l.to} onClick={() => setOpen(false)}>
+                  {l.label}
+                </Link>
+              </li>
+            ))}
+          </ul>
+          <Link className="btn btn-gold" to="/contact" onClick={() => setOpen(false)}>
+            Schedule a Consultation <ArrowIcon />
+          </Link>
+        </div>
+      </nav>
+    </header>
   );
 }

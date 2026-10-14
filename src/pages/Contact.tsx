@@ -82,7 +82,7 @@ function Contact() {
         <Grid
           container
           sx={{
-            borderRadius: 5,
+            borderRadius: 1.4,
             overflow: "hidden",
             bgcolor: "#fff",
             border: `1px solid ${colors.line}`,
@@ -95,10 +95,10 @@ function Contact() {
               bgcolor: colors.navy,
               color: "#fff",
               p: { xs: 4, md: 6 },
-              backgroundImage: `radial-gradient(circle at 0% 100%, rgba(14,149,148,0.4), transparent 55%)`,
+              backgroundImage: `radial-gradient(circle at 0% 100%, rgba(201,162,90,0.3), transparent 55%)`,
             }}
           >
-            <Typography variant="overline" component="p" sx={{ color: "#7FD6D3" }}>
+            <Typography variant="overline" component="p" sx={{ color: colors.goldLight }}>
               Contact
             </Typography>
             <Typography variant="h2" component="h1" sx={{ color: "#fff", mt: 1 }}>
@@ -115,7 +115,7 @@ function Contact() {
                 "Clear next steps and timeline",
               ].map((t) => (
                 <Stack key={t} direction="row" spacing={1.5} sx={{ alignItems: "flex-start" }}>
-                  <CheckCircleRoundedIcon sx={{ color: "#7FD6D3", fontSize: 20, mt: "3px" }} />
+                  <CheckCircleRoundedIcon sx={{ color: colors.goldLight, fontSize: 20, mt: "3px" }} />
                   <Typography sx={{ color: "rgba(255,255,255,0.88)", fontSize: "1rem" }}>{t}</Typography>
                 </Stack>
               ))}

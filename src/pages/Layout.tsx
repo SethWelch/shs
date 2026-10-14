@@ -1,5 +1,4 @@
 import { useEffect } from "react";
-import { Box } from "@mui/material";
 import { Outlet, useLocation } from "react-router-dom";
 import SiteHeader from "../components/SiteHeader";
 import SiteFooter from "../components/SiteFooter";
@@ -19,13 +18,13 @@ function Layout() {
   }, [pathname, hash]);
 
   return (
-    <Box sx={{ display: "flex", flexDirection: "column", minHeight: "100vh" }}>
+    <div className="site" style={{ display: "flex", flexDirection: "column", minHeight: "100vh" }}>
       <SiteHeader />
-      <Box component="main" sx={{ flex: 1 }}>
+      <main style={{ flex: 1 }}>
         <Outlet />
-      </Box>
+      </main>
       <SiteFooter />
-    </Box>
+    </div>
   );
 }
 
